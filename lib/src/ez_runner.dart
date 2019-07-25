@@ -18,7 +18,7 @@ import 'bloc/blocs/EzMessageBloc.dart';
 /// [locales] are the supported languages. The default is 'en'.
 ///
 class EzRunner {
-  static void run(Widget app,
+  static Future<void> run(Widget app,
       {Map<Type, BlocBase> blocs,
       bool cupertino = false,
       List<Locale> locales = const [Locale('en')],
