@@ -3,8 +3,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
-import 'bloc/BlocBase.dart';
-import 'bloc/BlocProvider.dart';
+import 'bloc/EzBlocBase.dart';
+import 'bloc/EzBlocProvider.dart';
 import 'bloc/EzGlobalBloc.dart';
 import 'bloc/blocs/EzMessageBloc.dart';
 
@@ -19,7 +19,7 @@ import 'bloc/blocs/EzMessageBloc.dart';
 ///
 class EzRunner {
   static Future<void> run(Widget app,
-      {Map<Type, BlocBase> blocs,
+      {Map<Type, EzBlocBase> blocs,
       bool cupertino = false,
       List<Locale> locales = const [Locale('en')],
       String envPath,
@@ -39,8 +39,8 @@ class EzRunner {
   }
 }
 
-Widget buildBlocWrapper(Widget wrapper, Map<Type, BlocBase> blocs) {
-  return BlocProvider<EzGlobalBloc>(
+Widget buildBlocWrapper(Widget wrapper, Map<Type, EzBlocBase> blocs) {
+  return EzBlocProvider<EzGlobalBloc>(
       bloc: EzGlobalBloc(blocs: blocs), child: wrapper);
 }
 

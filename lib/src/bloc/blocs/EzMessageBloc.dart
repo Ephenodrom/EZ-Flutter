@@ -3,9 +3,9 @@ import 'dart:async';
 import 'package:ez_flutter/src/model/EzMessage.dart';
 import 'package:rxdart/rxdart.dart';
 
-import '../BlocBase.dart';
+import '../EzBlocBase.dart';
 
-class EzMessageBloc implements BlocBase {
+class EzMessageBloc implements EzBlocBase {
   /// Sinks
   Sink<EzMessage> get addition => messageAdditionController.sink;
   final messageAdditionController = StreamController<EzMessage>();

@@ -105,10 +105,12 @@ It is also possible to customize the color for each type of message within the a
 
 ### Use application settings
 
-The [EZ Runner](lib/src/ez_runner.dart) loads automatically a json file with the name application.json from the asset directory. The EzRunner accepts a path to a environment and a custom settings file.
+The [EZ Runner](lib/src/ez_runner.dart) loads automatically a json file with the name application.json from the assets directory. The EzRunner accepts a path to a environment and a custom settings file.
 The application.json should only contain configuration that refers to the EZ Framework.
 Your environment .json file should contain configuration depending on the current environment the app is running.
 Add all other configuration that belongs to your app in the custom .json file.
+
+> Remember to add the assets folder to your pubspec.yaml file!
 
 ```dart
 EzRunner.run(CustomWidget() ,

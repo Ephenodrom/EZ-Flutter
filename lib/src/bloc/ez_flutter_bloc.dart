@@ -1,7 +1,6 @@
 library ez_flutter_bloc;
 
-export 'BlocList.dart';
-export 'BlocProvider.dart';
+export 'EzBlocProvider.dart';
 export 'EzGlobalBloc.dart';
-export 'BlocBase.dart';
+export 'EzBlocBase.dart';
 export 'blocs/EzMessageBloc.dart';

@@ -1,8 +1,8 @@
-import 'BlocBase.dart';
+import 'EzBlocBase.dart';
 
-class EzGlobalBloc extends BlocBase {
+class EzGlobalBloc extends EzBlocBase {
   //BlocList blocs;
-  final Map<Type, BlocBase> blocs;
+  final Map<Type, EzBlocBase> blocs;
 
   EzGlobalBloc({this.blocs});
 
@@ -11,7 +11,7 @@ class EzGlobalBloc extends BlocBase {
   }
 
   void dispose() {
-    blocs.forEach((Type t, BlocBase b) {
+    blocs.forEach((Type t, EzBlocBase b) {
       b.dispose();
     });
   }

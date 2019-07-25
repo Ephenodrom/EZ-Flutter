@@ -19,7 +19,7 @@ class _GlobalMessageWrapperState extends State<GlobalMessageWrapper> {
   Widget build(BuildContext context) {
     return StreamBuilder(
         initialData: null,
-        stream: BlocProvider.of<EzGlobalBloc>(context)
+        stream: EzBlocProvider.of<EzGlobalBloc>(context)
             .get<EzMessageBloc>(EzMessageBloc)
             .messageStream,
         builder: (BuildContext context, AsyncSnapshot<EzMessage> snapshot) {
