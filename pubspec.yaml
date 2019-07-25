@@ -11,8 +11,9 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  basic_utils: ^1.5.0
+  global_configuration: ^1.2.0
   rxdart: ^0.20.0
-  flushbar: ^1.8.0
 
 
 dev_dependencies:

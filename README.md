@@ -80,10 +80,10 @@ Scaffold{
 
 Add a [Message](lib/src/model/Message.dart) to the bloc. The supported types are :
 
-* success
-* info
-* warning
-* error
+* success (default color : 0xFF4CAF50)
+* info (default color : 0xFF2196F3)
+* warning (default color : 0xFFFF9800)
+* error (default color : 0xFFF44336)
 
 ```dart
     BlocProvider.of<GlobalBloc>(context)
@@ -92,13 +92,39 @@ Add a [Message](lib/src/model/Message.dart) to the bloc. The supported types are
         .add(Message("This is a success message", "success"));
 ```
 
+It is also possible to customize the color for each type of message within the application.json file.
+
+```json
+{
+  "msg_success_color" : "0xFF1B5E20",
+  "msg_info_color" : "0xFF0D47A1",
+  "msg_warning_color" : "0xFFE65100",
+  "msg_error_color" : "0xFFB71C1C",
+}
+```
+
 ### Use application settings
 
-The [EZ Runner](lib/src/ez_runner.dart) loads automatically a json file with the name application.json from the asset directory.
+The [EZ Runner](lib/src/ez_runner.dart) loads automatically a json file with the name application.json from the asset directory. The EzRunner accepts a path to a environment and a custom settings file.
+The application.json should only contain configuration that refers to the EZ Framework.
+Your environment .json file should contain configuration depending on the current environment the app is running.
+Add all other configuration that belongs to your app in the custom .json file.
 
 ```dart
-
+EzRunner.run(CustomWidget() ,
+      envPath: "assets/env_dev.json",
+      customPath: "assets/myapp.json");
 ```
+
+The settings can be accessed via the [EzSettings](lib/src/model/EzSettings.dart) class.
+
+```dart
+Map<String, dynamic> appSettings = EzSettings.app();
+Map<String, dynamic> envSettings = EzSettings.env();
+Map<String, dynamic> customSettings = EzSettings.custom();
+```
+
+The app
 
 ### Translation
 
@@ -131,7 +157,7 @@ Lorem Ipsum
 
 * Dart Basic Utils <https://pub.dev/packages/basic_utils>
 * Flutter Global Configuration <https://pub.dev/packages/global_configuration>
-* Flushbar <https://pub.dev/packages/flushbar>
+* RxDart <https://pub.dev/packages/rxdart>
 
 ## Changelog
 

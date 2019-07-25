@@ -1,3 +1,4 @@
+import 'package:ez_flutter/src/model/EzSettings.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -20,7 +21,9 @@ class EzRunner {
   static void run(Widget app,
       {Map<Type, BlocBase> blocs,
       bool cupertino = false,
-      List<Locale> locales = const [Locale('en')]}) {
+      List<Locale> locales = const [Locale('en')],
+      String envPath,
+      String customPath}) async {
     Widget wrapper;
     if (cupertino) {
       wrapper = getCupertinoWrapper(app);
@@ -31,6 +34,7 @@ class EzRunner {
       blocs = {};
     }
     blocs.putIfAbsent(EzMessageBloc, () => EzMessageBloc());
+    await EzSettings.init(envPath: envPath, customPath: customPath);
     return runApp(buildBlocWrapper(wrapper, blocs));
   }
 }

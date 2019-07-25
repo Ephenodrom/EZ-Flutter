@@ -1,3 +1,3 @@
 library ez_flutter_model;
 
-export 'Message.dart';
+export 'EzMessage.dart';
