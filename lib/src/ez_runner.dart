@@ -7,6 +7,7 @@ import 'bloc/EzBlocBase.dart';
 import 'bloc/EzBlocProvider.dart';
 import 'bloc/EzGlobalBloc.dart';
 import 'bloc/blocs/EzMessageBloc.dart';
+import 'model/EzTranslator.dart';
 
 ///
 /// The class for starting a EZ Flutter app.
@@ -50,6 +51,9 @@ Widget getMaterialWrapper(Widget app) {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
+      localizationsDelegates: [
+        const TranslationsDelegate(),
+      ],
       home: app);
 }
 
@@ -59,5 +63,8 @@ Widget getCupertinoWrapper(Widget app) {
       theme: CupertinoThemeData(
         primaryColor: Colors.blue,
       ),
+      localizationsDelegates: [
+        const TranslationsDelegate(),
+      ],
       home: app);
 }

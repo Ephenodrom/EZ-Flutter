@@ -47,13 +47,15 @@ Loading a configuration from json file and make it available everywhere inside t
 
 Build in translation feature that can be used everywhere inside the app.
 
-### Buildin customizable loading screen
+### Buildin customizable transition screen
 
 EZ Flutter provides a customizable loading screen to switch between to screens after some work is done.
 
 ## Usage
 
-Lorem Ipsum
+### Important information
+
+* All widgets and model classes from the EZ Flutter framework start with "Ez" to easily identify them.
 
 ### Start an EZ Flutter APP
 
@@ -63,7 +65,7 @@ Lorem Ipsum
 
 ### Display messages
 
-Global Messaging is handled with a BLOC and widget added as the body of the Scaffold. Load the [EzMessageBloc](lib/src/bloc/blocs/EzMessageBloc.dart) via the [BlocProvider](lib/src/bloc/BlocProvider.dart) using the **get** method.
+Global Messaging is handled with a BLOC and widget added as the body of the Scaffold. Load the [EzMessageBloc](lib/src/bloc/blocs/EzMessageBloc.dart) via the [EzBlocProvider](lib/src/bloc/EzBlocProvider.dart) using the **get** method.
 
 Add the [EzGlobalMessageWrapper](lib/src/widgets/EzGlobalMessageWrapper.dart) as the body to a Scaffold.
 
@@ -78,7 +80,7 @@ Scaffold{
 }
 ```
 
-Add a [Message](lib/src/model/Message.dart) to the bloc. The supported types are :
+Add a [EzMessage](lib/src/model/EzMessage.dart) to the bloc. The supported types are :
 
 * success (default color : 0xFF4CAF50)
 * info (default color : 0xFF2196F3)
@@ -89,7 +91,7 @@ Add a [Message](lib/src/model/Message.dart) to the bloc. The supported types are
     BlocProvider.of<GlobalBloc>(context)
         .get<EzMessageBloc>(EzMessageBloc)
         .addition
-        .add(Message("This is a success message", "success"));
+        .add(EzMessage("This is a success message", "success"));
 ```
 
 It is also possible to customize the color for each type of message within the application.json file.
@@ -105,7 +107,7 @@ It is also possible to customize the color for each type of message within the a
 
 ### Use application settings
 
-The [EZ Runner](lib/src/ez_runner.dart) loads automatically a json file with the name application.json from the assets directory. The EzRunner accepts a path to a environment and a custom settings file.
+The [EzRunner](lib/src/ez_runner.dart) loads automatically a json file with the name application.json from the assets directory. The EzRunner accepts a path to a environment and a custom settings file.
 The application.json should only contain configuration that refers to the EZ Framework.
 Your environment .json file should contain configuration depending on the current environment the app is running.
 Add all other configuration that belongs to your app in the custom .json file.
@@ -126,19 +128,38 @@ Map<String, dynamic> envSettings = EzSettings.env();
 Map<String, dynamic> customSettings = EzSettings.custom();
 ```
 
-The app
-
 ### Translation
 
-Translation is handled by different .json files that contain the translation for each language supported by your app. The translation files are automatically loaded by the [EZ Runner](lib/src/ez_runner.dart) at startup.
+Translation is handled by different .json files that contain the translation for each language supported by your app. The translation files are automatically loaded by the [EzRunner](lib/src/ez_runner.dart) at startup. Create a .json file with the pattern locale_$loacle.json under the locale folder for each supported language.
+
+Example: locale_en.json && locale_de.json
+
+```json
+//locale_en.json
+{
+  "some_message": "This is some message!"
+}
+//locale_de.json
+{
+  "some_message": "Dies ist eine Nachricht!"
+}
+```
+
+Add all supported locales to the [EzRunner](lib/src/ez_runner.dart) at startup.
 
 ```dart
+EzRunner.run(CustomWidget(),const [Locale('en'), Locale('de'), Locale('de')]);
+```
 
+Access the translation within your app.
+
+```dart
+EzTranslator().text("some_message");
 ```
 
 ### Adding custom BLOCs to the BlocProvider
 
-Typically your app will use some blocs written by yourself. The [EZ Runner](lib/src/ez_runner.dart) will add the given **blocs** to the [GlobalBloc](lib/src/bloc/GlobalBloc.dart) at startup. You can access each bloc everywhere inside the app. Your Bloc has to extend [BlocBase](lib/src/bloc/BlocBase.dart).
+Typically your app will use some blocs written by yourself. The [EzRunner](lib/src/ez_runner.dart) will add the given **blocs** to the [EzGlobalBloc](lib/src/bloc/EzGlobalBloc.dart) at startup. You can access each bloc everywhere inside the app. Your Bloc has to extend [EzBlocBase](lib/src/bloc/EzBlocBase.dart).
 
 ```dart
   class MyCustomBloc extends BlocBase {
