@@ -2,6 +2,8 @@ import 'package:ez_flutter/src/bloc/EzGlobalBloc.dart';
 import 'package:ez_flutter/src/bloc/blocs/EzMessageBloc.dart';
 import 'package:ez_flutter/src/bloc/ez_flutter_bloc.dart';
 import 'package:ez_flutter/src/model/EzMessage.dart';
+import 'package:ez_flutter/src/model/EzSettings.dart';
+import 'package:ez_flutter/src/model/EzSettingsKeys.dart';
 import 'package:flutter/material.dart';
 
 class GlobalMessageWrapper extends StatefulWidget {
@@ -35,16 +37,24 @@ class _GlobalMessageWrapperState extends State<GlobalMessageWrapper> {
 
     switch (message.type) {
       case "success":
-        color = Colors.green;
+        color = EzSettings.app()[EzSettingsKeys.KEY_MSG_SUCCESS_COLOR] != null
+            ? EzSettings.app()[EzSettingsKeys.KEY_MSG_SUCCESS_COLOR]
+            : Colors.green;
         break;
       case "info":
-        color = Colors.blue;
+        color = EzSettings.app()[EzSettingsKeys.KEY_MSG_INFO_COLOR] != null
+            ? EzSettings.app()[EzSettingsKeys.KEY_MSG_INFO_COLOR]
+            : Colors.blue;
         break;
       case "warning":
-        color = Colors.orange;
+        color = EzSettings.app()[EzSettingsKeys.KEY_MSG_WARNING_COLOR] != null
+            ? EzSettings.app()[EzSettingsKeys.KEY_MSG_WARNING_COLOR]
+            : Colors.orange;
         break;
       case "error":
-        color = Colors.red;
+        color = EzSettings.app()[EzSettingsKeys.KEY_MSG_ERROR_COLOR] != null
+            ? EzSettings.app()[EzSettingsKeys.KEY_MSG_ERROR_COLOR]
+            : Colors.red;
         break;
       default:
     }
