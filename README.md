@@ -112,7 +112,7 @@ The application.json should only contain configuration that refers to the EZ Fra
 Your environment .json file should contain configuration depending on the current environment the app is running.
 Add all other configuration that belongs to your app in the custom .json file.
 
-> Remember to add the assets folder to your pubspec.yaml file!
+> Remember to add the **assets** folder to your pubspec.yaml file!
 
 ```dart
 EzRunner.run(CustomWidget() ,
@@ -131,6 +131,8 @@ Map<String, dynamic> customSettings = EzSettings.custom();
 ### Translation
 
 Translation is handled by different .json files that contain the translation for each language supported by your app. The translation files are automatically loaded by the [EzRunner](lib/src/ez_runner.dart) at startup. Create a .json file with the pattern locale_$loacle.json under the locale folder for each supported language.
+
+> Remember to add the **locale** folder to your pubspec.yaml file!
 
 Example: locale_en.json && locale_de.json
 
@@ -154,7 +156,7 @@ EzRunner.run(CustomWidget(),const [Locale('en'), Locale('de'), Locale('de')]);
 Access the translation within your app.
 
 ```dart
-EzTranslator().text("some_message");
+EzTranslator.of(context).text("some_message");
 ```
 
 ### Adding custom BLOCs to the BlocProvider
@@ -178,6 +180,7 @@ Lorem Ipsum
 
 ## Used Packages
 
+* Logging <https://pub.dev/packages/logging>
 * Dart Basic Utils <https://pub.dev/packages/basic_utils>
 * Flutter Global Configuration <https://pub.dev/packages/global_configuration>
 * RxDart <https://pub.dev/packages/rxdart>
