@@ -22,13 +22,13 @@ class EzTranslator {
   }
 */
   Locale locale;
-  static Map<dynamic, dynamic> _localizedValues;
+  Map<dynamic, dynamic> _localizedValues;
 
   String text(String key) {
     return _localizedValues[key] ?? '$key';
   }
 
-  static Future<EzTranslator> load(Locale locale) async {
+  Future<EzTranslator> load(Locale locale) async {
     String jsonContent = await rootBundle
         .loadString("locale/locale_${locale.languageCode}.json");
     _localizedValues = json.decode(jsonContent);
@@ -39,13 +39,23 @@ class EzTranslator {
 }
 
 class TranslationsDelegate extends LocalizationsDelegate<EzTranslator> {
-  const TranslationsDelegate();
+  List<String> languageCodes;
+  TranslationsDelegate(List<Locale> locales) {
+    languageCodes = [];
+    for (Locale l in locales) {
+      languageCodes.add(l.languageCode);
+    }
+  }
 
   @override
-  bool isSupported(Locale locale) => ['en', 'de'].contains(locale.languageCode);
+  bool isSupported(Locale locale) =>
+      languageCodes.contains(locale.languageCode);
 
   @override
-  Future<EzTranslator> load(Locale locale) => EzTranslator.load(locale);
+  Future<EzTranslator> load(Locale locale) {
+    print("Load file for ${locale.languageCode}");
+    return EzTranslator().load(locale);
+  }
 
   @override
   bool shouldReload(TranslationsDelegate old) => false;

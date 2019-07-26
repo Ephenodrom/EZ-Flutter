@@ -27,9 +27,9 @@ class EzRunner {
       String customPath}) async {
     Widget wrapper;
     if (cupertino) {
-      wrapper = getCupertinoWrapper(app);
+      wrapper = getCupertinoWrapper(app, locales);
     } else {
-      wrapper = getMaterialWrapper(app);
+      wrapper = getMaterialWrapper(app, locales);
     }
     if (blocs == null) {
       blocs = {};
@@ -45,26 +45,26 @@ Widget buildBlocWrapper(Widget wrapper, Map<Type, EzBlocBase> blocs) {
       bloc: EzGlobalBloc(blocs: blocs), child: wrapper);
 }
 
-Widget getMaterialWrapper(Widget app) {
+Widget getMaterialWrapper(Widget app, List<Locale> locales) {
   return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
       localizationsDelegates: [
-        const TranslationsDelegate(),
+        TranslationsDelegate(locales),
       ],
       home: app);
 }
 
-Widget getCupertinoWrapper(Widget app) {
+Widget getCupertinoWrapper(Widget app, List<Locale> locales) {
   return CupertinoApp(
       title: 'Flutter Demo',
       theme: CupertinoThemeData(
         primaryColor: Colors.blue,
       ),
       localizationsDelegates: [
-        const TranslationsDelegate(),
+        TranslationsDelegate(locales),
       ],
       home: app);
 }
