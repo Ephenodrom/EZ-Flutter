@@ -2,6 +2,8 @@ import 'package:ez_flutter/src/model/EzSettings.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:logging/logging.dart';
 
 import 'bloc/EzBlocBase.dart';
 import 'bloc/EzBlocProvider.dart';
@@ -25,6 +27,10 @@ class EzRunner {
       List<Locale> locales = const [Locale('en')],
       String envPath,
       String customPath}) async {
+    Logger.root.level = Level.ALL;
+    Logger.root.onRecord.listen((record) {
+      print('${record.level.name}: ${record.time}: ${record.message}');
+    });
     Widget wrapper;
     if (cupertino) {
       wrapper = getCupertinoWrapper(app, locales);
@@ -52,8 +58,11 @@ Widget getMaterialWrapper(Widget app, List<Locale> locales) {
         primarySwatch: Colors.blue,
       ),
       localizationsDelegates: [
-        TranslationsDelegate(locales),
+        EzTranslationsDelegate(locales),
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
       ],
+      supportedLocales: locales,
       home: app);
 }
 
@@ -64,7 +73,8 @@ Widget getCupertinoWrapper(Widget app, List<Locale> locales) {
         primaryColor: Colors.blue,
       ),
       localizationsDelegates: [
-        TranslationsDelegate(locales),
+        EzTranslationsDelegate(locales),
       ],
+      supportedLocales: locales,
       home: app);
 }

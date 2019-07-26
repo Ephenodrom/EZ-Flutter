@@ -3,44 +3,40 @@ import 'package:flutter/services.dart' show rootBundle;
 import 'dart:convert';
 import 'dart:ui';
 
+import 'package:logging/logging.dart';
+
 class EzTranslator {
-  static EzTranslator _singleton = new EzTranslator._internal();
-
-  factory EzTranslator() {
-    return _singleton;
-  }
-
-  EzTranslator._internal();
-/*
   EzTranslator(Locale locale) {
     this.locale = locale;
     _localizedValues = null;
   }
 
   static EzTranslator of(BuildContext context) {
-    return Localizations.of<Translations>(context, Translations);
+    return Localizations.of<EzTranslator>(context, EzTranslator);
   }
-*/
+
   Locale locale;
-  Map<dynamic, dynamic> _localizedValues;
+  static Map<dynamic, dynamic> _localizedValues;
 
   String text(String key) {
     return _localizedValues[key] ?? '$key';
   }
 
-  Future<EzTranslator> load(Locale locale) async {
+  static Future<EzTranslator> load(Locale locale) async {
+    EzTranslator translations = new EzTranslator(locale);
     String jsonContent = await rootBundle
         .loadString("locale/locale_${locale.languageCode}.json");
     _localizedValues = json.decode(jsonContent);
-    return _singleton;
+    return translations;
   }
 
   get currentLanguage => locale.languageCode;
 }
 
-class TranslationsDelegate extends LocalizationsDelegate<EzTranslator> {
+class EzTranslationsDelegate extends LocalizationsDelegate<EzTranslator> {
+  static const String TAG = "EzTranslationsDelegate";
   List<String> languageCodes;
-  TranslationsDelegate(List<Locale> locales) {
+  EzTranslationsDelegate(List<Locale> locales) {
     languageCodes = [];
     for (Locale l in locales) {
       languageCodes.add(l.languageCode);
@@ -48,15 +44,17 @@ class TranslationsDelegate extends LocalizationsDelegate<EzTranslator> {
   }
 
   @override
-  bool isSupported(Locale locale) =>
-      languageCodes.contains(locale.languageCode);
-
-  @override
-  Future<EzTranslator> load(Locale locale) {
-    print("Load file for ${locale.languageCode}");
-    return EzTranslator().load(locale);
+  bool isSupported(Locale locale) {
+    Logger(TAG).info("Check if $locale is supported by $languageCodes");
+    return languageCodes.contains(locale.languageCode);
   }
 
   @override
-  bool shouldReload(TranslationsDelegate old) => false;
+  Future<EzTranslator> load(Locale locale) {
+    Logger(TAG).info("Load file for ${locale.languageCode}");
+    return EzTranslator.load(locale);
+  }
+
+  @override
+  bool shouldReload(EzTranslationsDelegate old) => false;
 }

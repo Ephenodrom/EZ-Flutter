@@ -11,6 +11,9 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+  logging: ^0.11.3+2
   basic_utils: ^1.5.0
   global_configuration: ^1.2.0
   rxdart: ^0.20.0
