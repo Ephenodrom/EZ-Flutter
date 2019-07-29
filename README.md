@@ -11,8 +11,7 @@ EZ Flutter is a collection of widgets, packages and many more usefull things, mi
 4. [Usage](#usage)
 5. [Used Packages](#used-packages)
 6. [Changelog](#changelog)
-7. [Support](#support)
-8. [Copyright and license](#copyright-and-license)
+7. [Copyright and license](#copyright-and-license)
 
 ## Install
 
@@ -202,7 +201,7 @@ FlatButton(
 
 #### Build in loading widgets
 
-Ez Flutter offers some loading animations that can be used for the [EzTransition](lib/src/widgets/EzTransition.dart).
+EZ Flutter offers some loading animations that can be used for the [EzTransition](lib/src/widgets/EzTransition.dart).
 
 * [EzSpinner](lib/src/widgets/loading/EzSpinner.dart)
 * [EzPulse](lib/src/widgets/loading/EzPulse.dart)
@@ -217,11 +216,6 @@ Ez Flutter offers some loading animations that can be used for the [EzTransition
 ## Changelog
 
 For a detailed changelog, see the [CHANGELOG.md](CHANGELOG.md) file
-
-## Support
-
-You like this repository or even use it in one of your projects? Feel free to donate a cup of coffee!
-Flattr : <https://flattr.com/@Ephenodrom>
 
 ## Copyright and license
 
