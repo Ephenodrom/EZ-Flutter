@@ -176,7 +176,36 @@ Typically your app will use some blocs written by yourself. The [EzRunner](lib/s
 
 ### Transition from Screen A to B
 
-Lorem Ipsum
+Use the [EzTransition](lib/src/widgets/EzTransition.dart) to switch from Screen A to B after some work is done. The "work" is defined by the **toProcess** argument.
+
+```dart
+void toProcess() async {
+  await new Future.delayed(const Duration(seconds: 3));
+  Navigator.push(
+    context,
+    MaterialPageRoute(
+      builder: (context) => MyNewScreen(),
+    ));
+}
+
+FlatButton(
+  child: Text("Start transition"),
+  onPressed: () {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => EzTransition(EzPulse(), toProcess,backgroundColor: Colors.white)),
+    );
+  },
+)
+```
+
+#### Build in loading widgets
+
+Ez Flutter offers some loading animations that can be used for the [EzTransition](lib/src/widgets/EzTransition.dart).
+
+* [EzSpinner](lib/src/widgets/loading/EzSpinner.dart)
+* [EzPulse](lib/src/widgets/loading/EzPulse.dart)
 
 ## Used Packages
 

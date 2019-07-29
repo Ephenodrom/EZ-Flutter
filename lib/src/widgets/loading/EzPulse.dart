@@ -42,7 +42,11 @@ class _EzPulseState extends State<EzPulse> with SingleTickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    return Center(child: Column(children: getChildren()));
+    return Center(
+        child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: getChildren()));
   }
 
   List<Widget> getChildren() {

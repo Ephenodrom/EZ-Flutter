@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 
 class EzTransition extends StatefulWidget {
-  final Function() process;
+  EzTransition(this.child, this.toProcess, {this.backgroundColor});
+
+  final Function() toProcess;
   final Widget child;
-  EzTransition(this.child, this.process);
+  final Color backgroundColor;
 
   @override
   _EzTransitionState createState() => _EzTransitionState();
@@ -13,11 +15,20 @@ class _EzTransitionState extends State<EzTransition> {
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) => widget.process);
+    widget.toProcess();
   }
 
   @override
   Widget build(BuildContext context) {
-    return widget.child;
+    return Material(
+      color: getBackgroundColor(),
+      child: widget.child,
+    );
+  }
+
+  Color getBackgroundColor() {
+    return widget.backgroundColor == null
+        ? Theme.of(context).backgroundColor
+        : widget.backgroundColor;
   }
 }

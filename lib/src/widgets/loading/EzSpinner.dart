@@ -15,6 +15,8 @@ class _EzSpinnerState extends State<EzSpinner>
   Widget build(BuildContext context) {
     return Center(
         child: Column(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      mainAxisAlignment: MainAxisAlignment.center,
       children: getChildren(),
     ));
   }

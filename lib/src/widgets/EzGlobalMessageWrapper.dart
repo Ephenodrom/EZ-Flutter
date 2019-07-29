@@ -38,22 +38,23 @@ class _GlobalMessageWrapperState extends State<GlobalMessageWrapper> {
     switch (message.type) {
       case "success":
         color = EzSettings.app()[EzSettingsKeys.KEY_MSG_SUCCESS_COLOR] != null
-            ? EzSettings.app()[EzSettingsKeys.KEY_MSG_SUCCESS_COLOR]
+            ? Color(EzSettings.app()[EzSettingsKeys.KEY_MSG_SUCCESS_COLOR])
             : Colors.green;
+
         break;
       case "info":
         color = EzSettings.app()[EzSettingsKeys.KEY_MSG_INFO_COLOR] != null
-            ? EzSettings.app()[EzSettingsKeys.KEY_MSG_INFO_COLOR]
+            ? Color(EzSettings.app()[EzSettingsKeys.KEY_MSG_INFO_COLOR])
             : Colors.blue;
         break;
       case "warning":
         color = EzSettings.app()[EzSettingsKeys.KEY_MSG_WARNING_COLOR] != null
-            ? EzSettings.app()[EzSettingsKeys.KEY_MSG_WARNING_COLOR]
+            ? Color(EzSettings.app()[EzSettingsKeys.KEY_MSG_WARNING_COLOR])
             : Colors.orange;
         break;
       case "error":
         color = EzSettings.app()[EzSettingsKeys.KEY_MSG_ERROR_COLOR] != null
-            ? EzSettings.app()[EzSettingsKeys.KEY_MSG_ERROR_COLOR]
+            ? Color(EzSettings.app()[EzSettingsKeys.KEY_MSG_ERROR_COLOR])
             : Colors.red;
         break;
       default:
