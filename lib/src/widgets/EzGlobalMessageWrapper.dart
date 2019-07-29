@@ -6,15 +6,15 @@ import 'package:ez_flutter/src/model/EzSettings.dart';
 import 'package:ez_flutter/src/model/EzSettingsKeys.dart';
 import 'package:flutter/material.dart';
 
-class GlobalMessageWrapper extends StatefulWidget {
+class EzGlobalMessageWrapper extends StatefulWidget {
   final Widget child;
 
-  GlobalMessageWrapper(this.child);
+  EzGlobalMessageWrapper(this.child);
   @override
-  _GlobalMessageWrapperState createState() => _GlobalMessageWrapperState();
+  _EzGlobalMessageWrapperState createState() => _EzGlobalMessageWrapperState();
 }
 
-class _GlobalMessageWrapperState extends State<GlobalMessageWrapper> {
+class _EzGlobalMessageWrapperState extends State<EzGlobalMessageWrapper> {
   @override
   Widget build(BuildContext context) {
     return StreamBuilder(

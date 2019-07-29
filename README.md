@@ -21,7 +21,7 @@ Update pubspec.yaml and add the following line to your dependencies.
 
 ```yaml
 dependencies:
-  ez_flutter: ^0.1.2
+  ez_flutter: ^0.1.3
 ```
 
 ## Import

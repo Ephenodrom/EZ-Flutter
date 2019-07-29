@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.1.3] - 2019-07-29
+
+* Add example folder
+
 ## [0.1.2] - 2019-07-29
 
 * Update dependencies
