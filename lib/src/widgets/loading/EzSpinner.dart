@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+///
+/// A normal spinner with some text.
+///
 class EzSpinner extends StatefulWidget {
   EzSpinner({Key key, this.text}) : super(key: key);
 
@@ -25,7 +28,8 @@ class _EzSpinnerState extends State<EzSpinner>
     List<Widget> children = [];
     children.add(CircularProgressIndicator(key: widget.key));
     if (widget.text != null) {
-      children.add(widget.text);
+      children.add(Padding(
+          padding: EdgeInsets.symmetric(vertical: 8), child: widget.text));
     }
     return children;
   }

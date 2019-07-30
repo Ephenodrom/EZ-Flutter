@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+///
+/// Widget for displaying loading animation and doing background work at the same time.
+///
 class EzTransition extends StatefulWidget {
   EzTransition(this.child, this.toProcess, {this.backgroundColor});
 

@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.2.0] - 2019-07-30
+
+* Update Documentation
+
 ## [0.1.3] - 2019-07-29
 
 * Add example folder

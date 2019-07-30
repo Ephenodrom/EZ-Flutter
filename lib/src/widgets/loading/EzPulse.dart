@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+///
+/// A pulsing circle with some text.
+///
 class EzPulse extends StatefulWidget {
   EzPulse(
       {Key key,
@@ -53,7 +56,8 @@ class _EzPulseState extends State<EzPulse> with SingleTickerProviderStateMixin {
     List<Widget> children = [];
     children.add(getPulse());
     if (widget.text != null) {
-      children.add(widget.text);
+      children.add(Padding(
+          padding: EdgeInsets.symmetric(vertical: 8), child: widget.text));
     }
     return children;
   }

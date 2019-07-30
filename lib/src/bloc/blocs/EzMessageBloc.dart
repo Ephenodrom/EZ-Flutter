@@ -5,6 +5,9 @@ import 'package:rxdart/rxdart.dart';
 
 import '../EzBlocBase.dart';
 
+///
+/// Bloc that handles messages. Normally used by the [EzGlobalMessageWrapper].
+///
 class EzMessageBloc implements EzBlocBase {
   /// Sinks
   Sink<EzMessage> get addition => messageAdditionController.sink;

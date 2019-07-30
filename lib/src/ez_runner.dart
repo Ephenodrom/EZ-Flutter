@@ -14,11 +14,27 @@ import 'model/EzTranslator.dart';
 ///
 /// The class for starting a EZ Flutter app.
 ///
-/// It call the runApp method with a [MaterialApp] or [CupertinoApp]
+/// It calls the runApp method with a [MaterialApp] or [CupertinoApp] adding a [EzTranslationsDelegate]
+/// and the [locales] as supported locales.
 ///
-/// [blocs] are custom BLOCs that can be added to the [GlobalBloc] to be accessable within the app.
+/// [blocs] are custom BLOCs that can be added to the [EzGlobalBloc] to be accessable within the app.
 /// [cupertino] defines if the runner should use [CupertinoApp] instead of [MaterialApp].
-/// [locales] are the supported languages. The default is 'en'.
+/// [locales] are the supported languages. The default is 'EN'.
+/// [envPath] is the path for the environment configuration.
+/// [applicationPath] is the path for your application configuration.
+/// [materialThemeData] the material theme data to add to the [MaterialApp]
+/// [cupertinoThemeData] the material theme data to add to the [CupertinoApp]
+///
+/// Running the application with default settings.
+/// * It will only load the EZ Flutter settings stored in the assets/ez_settings.json file
+/// * It will only support EN as a language for translation
+/// * It will run a MaterialApp
+/// * It will use the default values of ThemeData
+///
+/// ```dart
+/// void main() async =>
+///      await EzRunner.run(MyHomePage(title: 'Hello EZ'));
+/// ```
 ///
 class EzRunner {
   static Future<void> run(Widget app,
@@ -26,22 +42,24 @@ class EzRunner {
       bool cupertino = false,
       List<Locale> locales = const [Locale('en')],
       String envPath,
-      String customPath}) async {
+      String applicationPath,
+      ThemeData materialThemeData,
+      CupertinoThemeData cupertinoThemeData}) async {
     Logger.root.level = Level.ALL;
     Logger.root.onRecord.listen((record) {
       print('${record.level.name}: ${record.time}: ${record.message}');
     });
     Widget wrapper;
     if (cupertino) {
-      wrapper = getCupertinoWrapper(app, locales);
+      wrapper = getCupertinoWrapper(app, locales, cupertinoThemeData);
     } else {
-      wrapper = getMaterialWrapper(app, locales);
+      wrapper = getMaterialWrapper(app, locales, materialThemeData);
     }
     if (blocs == null) {
       blocs = {};
     }
     blocs.putIfAbsent(EzMessageBloc, () => EzMessageBloc());
-    await EzSettings.init(envPath: envPath, customPath: customPath);
+    await EzSettings.init(envPath: envPath, applicationPath: applicationPath);
     return runApp(buildBlocWrapper(wrapper, blocs));
   }
 }
@@ -51,12 +69,13 @@ Widget buildBlocWrapper(Widget wrapper, Map<Type, EzBlocBase> blocs) {
       bloc: EzGlobalBloc(blocs: blocs), child: wrapper);
 }
 
-Widget getMaterialWrapper(Widget app, List<Locale> locales) {
+Widget getMaterialWrapper(
+    Widget app, List<Locale> locales, ThemeData materialThemeData) {
   return MaterialApp(
       title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
+      theme: materialThemeData != null
+          ? materialThemeData
+          : ThemeData(primaryColor: Colors.blue),
       localizationsDelegates: [
         EzTranslationsDelegate(locales),
         GlobalMaterialLocalizations.delegate,
@@ -66,12 +85,13 @@ Widget getMaterialWrapper(Widget app, List<Locale> locales) {
       home: app);
 }
 
-Widget getCupertinoWrapper(Widget app, List<Locale> locales) {
+Widget getCupertinoWrapper(
+    Widget app, List<Locale> locales, CupertinoThemeData cupertinoThemeData) {
   return CupertinoApp(
       title: 'Flutter Demo',
-      theme: CupertinoThemeData(
-        primaryColor: Colors.blue,
-      ),
+      theme: cupertinoThemeData != null
+          ? cupertinoThemeData
+          : CupertinoThemeData(primaryColor: Colors.blue),
       localizationsDelegates: [
         EzTranslationsDelegate(locales),
       ],
