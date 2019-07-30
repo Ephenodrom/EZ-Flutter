@@ -1,6 +1,6 @@
 # EZ Flutter
 
-EZ Flutter is a collection of widgets, packages and many more usefull things, mixed up in little framework. The aim is to make standard features available from scratch.
+EZ Flutter is a collection of widgets, packages and many more usefull things, mixed up in a little framework. The aim is to make standard features easily available from scratch.
 
 ## Table of Contents
 
@@ -12,10 +12,12 @@ EZ Flutter is a collection of widgets, packages and many more usefull things, mi
    * [Automatic Application Configuration](#automatic-application-configuration)
    * [Multilanguage Support](#multilanguage-support)
    * [Buildin Customizable Transition Screen](#buildin-customizable-transition-screen)
+   * [Buildin Bloc Support](#buildin-bloc-support)
 4. [Documentation](#documentation)
-5. [Used Packages](#used-packages)
-6. [Changelog](#changelog)
-7. [Copyright and license](#copyright-and-license)
+5. [Contribution](#contribution)
+6. [Used Packages](#used-packages)
+7. [Changelog](#changelog)
+8. [Copyright and license](#copyright-and-license)
 
 ## Install
 
@@ -54,9 +56,17 @@ Build in translation feature that can be used everywhere inside the app.
 
 EZ Flutter provides a customizable loading screen to switch between to screens after some work is done.
 
+### Buildin Bloc Support
+
+EZ Flutter comes with a Blocprovider to easily handle multiple blocs within the app.
+
 ## Documentation
 
 The documentation is located in the [documentation folder](documentation/README.md)
+
+## Contribution
+
+You have an idea for some usefull widgets every app needs ? You are facing a bug ? Check out the [CONTRIBUTION.md](CONTRIBUTION.md) file.
 
 ## Used Packages
 
