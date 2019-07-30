@@ -66,7 +66,7 @@ The documentation is located in the [documentation folder](documentation/README.
 
 ## Contribution
 
-You have an idea for some usefull widgets every app needs ? You are facing a bug ? Check out the [CONTRIBUTION.md](CONTRIBUTION.md) file.
+You have an idea for some usefull widgets every app needs ? You are facing a bug ? Check out the [CONTRIBUTING.md](CONTRIBUTING.md) file.
 
 ## Used Packages
 
