@@ -3,11 +3,28 @@
 EZ Flutter is a collection of widgets, packages and many more usefull things, mixed up in little framework. The aim is to make standard features available from scratch.
 
 ## Table of Contents
-
-1. [Before you start](#before-you-start)
-2. [Start an EZ Flutter aPP](#start-an-ez-flutter-app)
+1. [Install](#install)
+2. [Before you start](#before-you-start)
+3. [Start an EZ Flutter aPP](#start-an-ez-flutter-app)
    * [Running the application with default settings](#running-the-application-with-default-settings)
    * [Arguments of the run method](#arguments-of-the-run-method)
+
+## Install
+
+Update **pubspec.yaml** and add the following line to your dependencies. Replace **$version** with the latest version of this package.
+
+```yaml
+dependencies:
+  ez_flutter: $version
+```
+Update your **pubspec.yaml** file and add the following assets locations :
+
+```yaml
+flutter:
+  assets:
+   - assets/
+   - locale/
+```
 
 ## Before you start
 
