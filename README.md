@@ -9,7 +9,7 @@ EZ Flutter is a collection of widgets, packages and many more usefull things, mi
 2. [Import](#import)
 3. [Features](#features)
    * [Global Messaging](#global-messaging)
-   * [Automatic Application Configuration](#automatic-application-configuration)
+   * [Automatic Configuration Loading](#automatic-configuration-loading)
    * [Multilanguage Support](#multilanguage-support)
    * [Buildin Customizable Transition Screen](#buildin-customizable-transition-screen)
    * [Buildin Bloc Support](#buildin-bloc-support)
@@ -52,7 +52,7 @@ import 'package:ez_flutter/ez_flutter.dart';
 
 Display a message to the user from anywhere inside the app with just one line of code.
 
-### Automatic Application Configuration
+### Automatic Configuration Loading
 
 Loading a configuration from multiple json files and make it available everywhere inside the app.
 
