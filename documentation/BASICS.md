@@ -57,4 +57,4 @@ Running a EZ Flutter app with default settings will do the following steps :
 * **envPath** is the path for the environment configuration.
 * **applicationPath** is the path for your application configuration.
 * **materialThemeData** the material theme data to add to the **MaterialApp**
-* **cupertinoThemeData** the material theme data to add to the **CupertinoApp**
+* **cupertinoThemeData** the cupertino theme data to add to the **CupertinoApp**
