@@ -1,4 +1,5 @@
 import 'package:global_configuration/global_configuration.dart';
+import 'package:logging/logging.dart';
 
 ///
 /// Static class to access the different types of settings.
@@ -8,6 +9,7 @@ import 'package:global_configuration/global_configuration.dart';
 /// * Access your application settings via EzSettings.app()
 ///
 class EzSettings {
+  static const String TAG = "EzSettings";
   static const String KEY_EZ_SETTINGS = "ez_settings";
   static const String KEY_ENV_SETTINGS = "env_settings";
   static const String KEY_APP_SETTINGS = "app_settings";
@@ -32,15 +34,30 @@ class EzSettings {
       GlobalConfiguration().get(KEY_APP_SETTINGS);
 
   static init({String envPath, String applicationPath}) async {
-    await GlobalConfiguration()
-        .loadFromPathIntoKey(PATH_EZ_SETTINGS, KEY_EZ_SETTINGS);
-    if (envPath != null) {
+    try {
+      Logger(TAG).info("Try to load configuration from $PATH_EZ_SETTINGS");
       await GlobalConfiguration()
-          .loadFromPathIntoKey(envPath, KEY_ENV_SETTINGS);
+          .loadFromPathIntoKey(PATH_EZ_SETTINGS, KEY_EZ_SETTINGS);
+    } catch (e) {
+      Logger(TAG).info("Could not load configuration from $PATH_EZ_SETTINGS");
+    }
+    if (envPath != null) {
+      try {
+        Logger(TAG).info("Try to load configuration from $envPath");
+        await GlobalConfiguration()
+            .loadFromPathIntoKey(envPath, KEY_ENV_SETTINGS);
+      } catch (e) {
+        Logger(TAG).info("Could not load configuration from $envPath");
+      }
     }
     if (applicationPath != null) {
-      await GlobalConfiguration()
-          .loadFromPathIntoKey(applicationPath, KEY_APP_SETTINGS);
+      try {
+        Logger(TAG).info("Try to load configuration from $applicationPath");
+        await GlobalConfiguration()
+            .loadFromPathIntoKey(applicationPath, KEY_APP_SETTINGS);
+      } catch (e) {
+        Logger(TAG).info("Could not load configuration from $applicationPath");
+      }
     }
   }
 }

@@ -1,6 +1,6 @@
 name: ez_flutter
 description: A collection of widgets, packages and many more usefull things, mixed up in little framework.
-version: 0.2.0
+version: 0.2.1
 author: Daniel Linsenmeier <daniel@ephenodrom.de>
 homepage: https://github.com/Ephenodrom/EZ-Flutter
 publish_to: https://pub.dartlang.org

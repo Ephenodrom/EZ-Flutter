@@ -6,6 +6,7 @@ EZ Flutter supports displaying a message to the user from anywhere inside the ap
 
 1. [Basics](#basics)
 2. [Usage](#start-an-ez-flutter-app)
+   * [Use build in Scaffolds](#use-buildin-scaffolds)
    * [Add the message wrapper](#add-the-message-wrapper)
    * [Add message to the bloc](#add-message-to-the-bloc)
 3. [Customize message colors](#customize-message-colors)
@@ -15,6 +16,15 @@ EZ Flutter supports displaying a message to the user from anywhere inside the ap
 Global Messaging is handled with a BLOC and widget added as the body of a Scaffold.
 
 ## Usage
+
+### Use build in Scaffolds
+
+To activate the Global Messaging feature, you can use the build in scaffolds.
+
+* [EzScaffold](/lib/src/widgets/EzScaffold.dart)
+* [EzGradientScaffold](/lib/src/widgets/EzGradientScaffold.dart)
+
+If you don't want to use the build in scaffold widgets, check out the next steps!
 
 ### Add the message wrapper
 

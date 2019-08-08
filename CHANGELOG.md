@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.2.1] - 2019-08-08
+
+* Fix some bugs
+* Added EzScaffold and EzGradientScaffold
+* Update Documentation
+
 ## [0.2.0] - 2019-07-30
 
 * Update Documentation
