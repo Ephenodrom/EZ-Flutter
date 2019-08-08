@@ -6,6 +6,8 @@ import 'dart:ui';
 import 'package:logging/logging.dart';
 
 class EzTranslator {
+  static const String TAG = "EzTranslator";
+
   EzTranslator(Locale locale) {
     this.locale = locale;
     _localizedValues = null;
@@ -24,9 +26,16 @@ class EzTranslator {
 
   static Future<EzTranslator> load(Locale locale) async {
     EzTranslator translations = new EzTranslator(locale);
-    String jsonContent = await rootBundle
-        .loadString("locale/locale_${locale.languageCode}.json");
-    _localizedValues = json.decode(jsonContent);
+    try {
+      Logger(TAG).info(
+          "Try to load translation from locale/locale_${locale.languageCode}.json");
+      String jsonContent = await rootBundle
+          .loadString("locale/locale_${locale.languageCode}.json");
+      _localizedValues = json.decode(jsonContent);
+    } catch (e) {
+      Logger(TAG).info(
+          "Could not load translation from locale/locale_${locale.languageCode}.json!");
+    }
     return translations;
   }
 

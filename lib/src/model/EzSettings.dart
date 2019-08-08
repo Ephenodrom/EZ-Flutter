@@ -42,22 +42,14 @@ class EzSettings {
       Logger(TAG).info("Could not load configuration from $PATH_EZ_SETTINGS");
     }
     if (envPath != null) {
-      try {
-        Logger(TAG).info("Try to load configuration from $envPath");
-        await GlobalConfiguration()
-            .loadFromPathIntoKey(envPath, KEY_ENV_SETTINGS);
-      } catch (e) {
-        Logger(TAG).info("Could not load configuration from $envPath");
-      }
+      Logger(TAG).info("Try to load configuration from $envPath");
+      await GlobalConfiguration()
+          .loadFromPathIntoKey(envPath, KEY_ENV_SETTINGS);
     }
     if (applicationPath != null) {
-      try {
-        Logger(TAG).info("Try to load configuration from $applicationPath");
-        await GlobalConfiguration()
-            .loadFromPathIntoKey(applicationPath, KEY_APP_SETTINGS);
-      } catch (e) {
-        Logger(TAG).info("Could not load configuration from $applicationPath");
-      }
+      Logger(TAG).info("Try to load configuration from $applicationPath");
+      await GlobalConfiguration()
+          .loadFromPathIntoKey(applicationPath, KEY_APP_SETTINGS);
     }
   }
 }
