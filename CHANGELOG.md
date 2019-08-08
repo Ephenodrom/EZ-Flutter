@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.2.2] - 2019-08-08
+
+* Export EzScaffold and EzGradientScaffold
+
 ## [0.2.1] - 2019-08-08
 
 * Fix some bugs

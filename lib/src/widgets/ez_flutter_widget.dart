@@ -5,3 +5,5 @@ export 'EzTransition.dart';
 export 'loading/EzPulse.dart';
 export 'loading/EzSpinner.dart';
 export 'loading/EzDots.dart';
+export 'EzGradientScaffold.dart';
+export 'EzScaffold.dart';
