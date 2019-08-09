@@ -38,20 +38,21 @@ class EzGlobalMessageWrapper extends StatefulWidget {
 
 class _EzGlobalMessageWrapperState extends State<EzGlobalMessageWrapper> {
   @override
+  void initState() {
+    super.initState();
+    EzBlocProvider.of<EzGlobalBloc>(context)
+        .get<EzMessageBloc>(EzMessageBloc)
+        .messageStream
+        .listen((msg) {
+      if (msg != null) {
+        WidgetsBinding.instance.addPostFrameCallback((_) => _showMessage(msg));
+      }
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return StreamBuilder(
-        initialData: null,
-        stream: EzBlocProvider.of<EzGlobalBloc>(context)
-            .get<EzMessageBloc>(EzMessageBloc)
-            .messageStream,
-        builder: (BuildContext context, AsyncSnapshot<EzMessage> snapshot) {
-          EzMessage msg = snapshot.data;
-          if (msg != null && !msg.displayed) {
-            WidgetsBinding.instance
-                .addPostFrameCallback((_) => _showMessage(msg));
-          }
-          return Container(child: widget.child);
-        });
+    return widget.child;
   }
 
   void _showMessage(EzMessage message) {
