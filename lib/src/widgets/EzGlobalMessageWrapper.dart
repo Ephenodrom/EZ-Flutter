@@ -17,12 +17,14 @@ import 'package:flutter/material.dart';
 /// * [EzMessageType.INFO] (Colors.blue)
 /// * [EzMessageType.WARNING] (Colors.orange)
 /// * [EzMessageType.ERROR] (Colors.red)
+/// * [EzMessageType.DEBUG] (Colors.grey)
 ///
 /// The color used for a type can be modified via the application.json file under assets using the following keys:
 /// * msg_success_color
 /// * msg_info_color
 /// * msg_warning_color
 /// * msg_error_color
+/// * msg_debug_color
 ///
 /// See [EzSettingsKeys] for all possible configuration keys.
 ///
@@ -44,7 +46,7 @@ class _EzGlobalMessageWrapperState extends State<EzGlobalMessageWrapper> {
             .messageStream,
         builder: (BuildContext context, AsyncSnapshot<EzMessage> snapshot) {
           EzMessage msg = snapshot.data;
-          if (msg != null) {
+          if (msg != null && !msg.displayed) {
             WidgetsBinding.instance
                 .addPostFrameCallback((_) => _showMessage(msg));
           }
@@ -106,6 +108,18 @@ class _EzGlobalMessageWrapperState extends State<EzGlobalMessageWrapper> {
           color = Colors.red;
         }
         break;
+      case EzMessageType.DEBUG:
+        if (EzSettings.app() != null) {
+          if (StringUtils.isNotNullOrEmpty(
+              EzSettings.app()[EzSettingsKeys.KEY_MSG_DEBUG_COLOR])) {
+            color = Color(EzSettings.app()[EzSettingsKeys.KEY_MSG_DEBUG_COLOR]);
+          } else {
+            color = Colors.grey;
+          }
+        } else {
+          color = Colors.grey;
+        }
+        break;
       default:
     }
 
@@ -121,5 +135,6 @@ class _EzGlobalMessageWrapperState extends State<EzGlobalMessageWrapper> {
     Scaffold.of(context)
       ..hideCurrentSnackBar()
       ..showSnackBar(bar);
+    message.displayed = true;
   }
 }

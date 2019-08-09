@@ -51,6 +51,7 @@ Add a [EzMessage](/lib/src/model/EzMessage.dart) to the bloc. The supported [EzM
 * INFO (default color : Colors.blue)
 * WARNING (default color : Colors.orange)
 * ERROR (default color : Colors.red)
+* DEBUG (default color : Colors.grey)
 
 ```dart
     EzBlocProvider.of<EzGlobalBloc>(context)

@@ -83,6 +83,7 @@ You have an idea for some usefull widgets every app needs ? You are facing a bug
 * Dart Basic Utils <https://pub.dev/packages/basic_utils>
 * Flutter Global Configuration <https://pub.dev/packages/global_configuration>
 * RxDart <https://pub.dev/packages/rxdart>
+* shared_preferences <https://pub.dev/packages/shared_preferences>
 
 ## Changelog
 

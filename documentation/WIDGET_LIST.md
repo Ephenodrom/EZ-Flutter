@@ -26,10 +26,11 @@ The body of the Scaffold is wrapped with [EzGlobalMessageWrapper](/lib/src/widge
 
 [EzGlobalMessageWrapper](/lib/src/widgets/EzGlobalMessageWrapper.dart) is a widget for displaying messages to a user. The wrapper supports four [types](lib/src/model/EzMessageType.dart) of messages :
 
-* success (Colors.green)
-* info (Colors.blue)
-* warning (Colors.orange)
-* error (Colors.red)
+* SUCCESS (default color : Colors.green)
+* INFO (default color : Colors.blue)
+* WARNING (default color : Colors.orange)
+* ERROR (default color : Colors.red)
+* DEBUG (default color : Colors.grey)
 
 ## EzDots
 
