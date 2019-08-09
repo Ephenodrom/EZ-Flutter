@@ -1,5 +1,10 @@
 # Changelog
 
+## [0.2.3] - 2019-08-09
+
+* Fix bug with EzGlobalMessageWrapper
+* Update documentation, added widget list
+
 ## [0.2.2] - 2019-08-08
 
 * Export EzScaffold and EzGradientScaffold

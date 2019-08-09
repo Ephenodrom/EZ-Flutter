@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+///
+///
+///
 class EzDots extends StatefulWidget {
   final Duration duration;
   final bool isDot;

@@ -12,8 +12,10 @@ import 'package:flutter/widgets.dart';
 /// The [body] of the [Scaffold] is wrapped with [EzGlobalMessageWrapper] to activate the global messaging feature.
 ///
 class EzGradientScaffold extends StatelessWidget {
-  EzGradientScaffold(this.body, this.gradient,
+  EzGradientScaffold(
       {Key key,
+      this.body,
+      this.gradient,
       this.appBar,
       this.floatingActionButton,
       this.floatingActionButtonLocation,

@@ -1,3 +1,4 @@
+import 'package:basic_utils/basic_utils.dart';
 import 'package:ez_flutter/src/bloc/EzGlobalBloc.dart';
 import 'package:ez_flutter/src/bloc/blocs/EzMessageBloc.dart';
 import 'package:ez_flutter/src/bloc/ez_flutter_bloc.dart';
@@ -12,10 +13,10 @@ import 'package:flutter/material.dart';
 ///
 /// Add it directly under the scaffold to display messages arrive through the messageStream of the [EzMessageBloc].
 /// The wrapper supports four types of messages :
-/// * success (Colors.green)
-/// * info (Colors.blue)
-/// * warning (Colors.orange)
-/// * error (Colors.red)
+/// * [EzMessageType.SUCCESS] (Colors.green)
+/// * [EzMessageType.INFO] (Colors.blue)
+/// * [EzMessageType.WARNING] (Colors.orange)
+/// * [EzMessageType.ERROR] (Colors.red)
 ///
 /// The color used for a type can be modified via the application.json file under assets using the following keys:
 /// * msg_success_color
@@ -56,25 +57,54 @@ class _EzGlobalMessageWrapperState extends State<EzGlobalMessageWrapper> {
 
     switch (message.type) {
       case EzMessageType.SUCCESS:
-        color = EzSettings.app()[EzSettingsKeys.KEY_MSG_SUCCESS_COLOR] != null
-            ? Color(EzSettings.app()[EzSettingsKeys.KEY_MSG_SUCCESS_COLOR])
-            : Colors.green;
-
+        if (EzSettings.app() != null) {
+          if (StringUtils.isNotNullOrEmpty(
+              EzSettings.app()[EzSettingsKeys.KEY_MSG_SUCCESS_COLOR])) {
+            color =
+                Color(EzSettings.app()[EzSettingsKeys.KEY_MSG_SUCCESS_COLOR]);
+          } else {
+            color = Colors.green;
+          }
+        } else {
+          color = Colors.green;
+        }
         break;
       case EzMessageType.INFO:
-        color = EzSettings.app()[EzSettingsKeys.KEY_MSG_INFO_COLOR] != null
-            ? Color(EzSettings.app()[EzSettingsKeys.KEY_MSG_INFO_COLOR])
-            : Colors.blue;
+        if (EzSettings.app() != null) {
+          if (StringUtils.isNotNullOrEmpty(
+              EzSettings.app()[EzSettingsKeys.KEY_MSG_INFO_COLOR])) {
+            color = Color(EzSettings.app()[EzSettingsKeys.KEY_MSG_INFO_COLOR]);
+          } else {
+            color = Colors.blue;
+          }
+        } else {
+          color = Colors.blue;
+        }
         break;
       case EzMessageType.WARNING:
-        color = EzSettings.app()[EzSettingsKeys.KEY_MSG_WARNING_COLOR] != null
-            ? Color(EzSettings.app()[EzSettingsKeys.KEY_MSG_WARNING_COLOR])
-            : Colors.orange;
+        if (EzSettings.app() != null) {
+          if (StringUtils.isNotNullOrEmpty(
+              EzSettings.app()[EzSettingsKeys.KEY_MSG_WARNING_COLOR])) {
+            color =
+                Color(EzSettings.app()[EzSettingsKeys.KEY_MSG_WARNING_COLOR]);
+          } else {
+            color = Colors.orange;
+          }
+        } else {
+          color = Colors.orange;
+        }
         break;
       case EzMessageType.ERROR:
-        color = EzSettings.app()[EzSettingsKeys.KEY_MSG_ERROR_COLOR] != null
-            ? Color(EzSettings.app()[EzSettingsKeys.KEY_MSG_ERROR_COLOR])
-            : Colors.red;
+        if (EzSettings.app() != null) {
+          if (StringUtils.isNotNullOrEmpty(
+              EzSettings.app()[EzSettingsKeys.KEY_MSG_ERROR_COLOR])) {
+            color = Color(EzSettings.app()[EzSettingsKeys.KEY_MSG_ERROR_COLOR]);
+          } else {
+            color = Colors.red;
+          }
+        } else {
+          color = Colors.red;
+        }
         break;
       default:
     }
