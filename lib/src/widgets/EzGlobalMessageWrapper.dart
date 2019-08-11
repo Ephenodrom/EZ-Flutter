@@ -45,7 +45,7 @@ class _EzGlobalMessageWrapperState extends State<EzGlobalMessageWrapper> {
         .messageStream
         .listen((msg) {
       if (msg != null) {
-        WidgetsBinding.instance.addPostFrameCallback((_) => _showMessage(msg));
+        _showMessage(msg);
       }
     });
   }
@@ -123,12 +123,6 @@ class _EzGlobalMessageWrapperState extends State<EzGlobalMessageWrapper> {
         break;
       default:
     }
-
-    //Flushbar(
-    //  message: message.text,
-    //  backgroundColor: color,
-    //  duration: Duration(seconds: 3),
-    //)..show(context);
 
     SnackBar bar =
         SnackBar(content: Text(message.text), backgroundColor: color);

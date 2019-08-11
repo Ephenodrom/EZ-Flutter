@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.2.4] - 2019-08-09
+
+* Fix bug with EzGlobalMessageWrapper
+
 ## [0.2.3] - 2019-08-09
 
 * Fix bug with EzGlobalMessageWrapper
