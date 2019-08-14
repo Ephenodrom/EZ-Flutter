@@ -71,7 +71,7 @@ EZ Flutter comes with a Blocprovider to easily handle multiple blocs within the 
 
 ## Documentation
 
-The documentation is located in the [documentation folder](documentation/README.md)
+The documentation is located in the [ez-flutter.de/docs](https://ez-flutter.de/docs)
 
 ## Contribution
 

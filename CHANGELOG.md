@@ -1,5 +1,10 @@
 # Changelog
 
+## [0.2.5] - 2019-08-14
+
+* Export HttpUtils
+* Update Documentation
+
 ## [0.2.4] - 2019-08-09
 
 * Fix bug with EzGlobalMessageWrapper
