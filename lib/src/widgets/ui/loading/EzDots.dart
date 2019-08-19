@@ -1,3 +1,6 @@
+import 'package:ez_flutter/src/bloc/EzBlocProvider.dart';
+import 'package:ez_flutter/src/bloc/EzGlobalBloc.dart';
+import 'package:ez_flutter/src/bloc/blocs/EzLoadingBloc.dart';
 import 'package:flutter/material.dart';
 
 ///
@@ -24,10 +27,13 @@ class _EzDotsState extends State<EzDots> with SingleTickerProviderStateMixin {
   Animation<double> ani2;
   Animation<double> ani3;
   AnimationController controller;
+  Text text;
 
   @override
   void initState() {
     super.initState();
+
+    text = widget.text;
 
     controller = AnimationController(duration: widget.duration, vsync: this);
 
@@ -57,6 +63,17 @@ class _EzDotsState extends State<EzDots> with SingleTickerProviderStateMixin {
     });
 
     controller.repeat();
+
+     EzBlocProvider.of<EzGlobalBloc>(context)
+        .get<EzLoadingBloc>(EzLoadingBloc)
+        .messageStream
+        .listen((msg) {
+      if (msg != null) {
+        setState(() {
+          text = Text(msg, style: text.style,);
+        });
+      }
+    });
   }
 
   @override
@@ -74,7 +91,7 @@ class _EzDotsState extends State<EzDots> with SingleTickerProviderStateMixin {
     children.add(getDots());
     if (widget.text != null) {
       children.add(Padding(
-          padding: EdgeInsets.symmetric(vertical: 8), child: widget.text));
+          padding: EdgeInsets.symmetric(vertical: 8), child: text));
     }
     return children;
   }
