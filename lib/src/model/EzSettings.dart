@@ -80,8 +80,10 @@ class EzSettings {
       Logger(TAG).info("Try to load configuration from shared preferences");
       final SharedPreferences prefs = await SharedPreferences.getInstance();
       String persistent = prefs.getString(KEY_EZ_SHARED_PREFERENCES);
-      Map<String, dynamic> persistentAsMap = json.decode(persistent);
-      GlobalConfiguration().setValue(KEY_SP_SETTINGS, persistentAsMap);
+      if (persistent != null) {
+        Map<String, dynamic> persistentAsMap = json.decode(persistent);
+        GlobalConfiguration().setValue(KEY_SP_SETTINGS, persistentAsMap);
+      }
     } catch (e) {
       Logger(TAG).info(
           "Could not load configuration from shared preferences because of $e");
