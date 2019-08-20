@@ -1,3 +1,4 @@
+import 'package:ez_flutter/src/bloc/ez_flutter_bloc.dart';
 import 'package:flutter/material.dart';
 
 ///
@@ -25,16 +26,34 @@ class EzPulse extends StatefulWidget {
 class _EzPulseState extends State<EzPulse> with SingleTickerProviderStateMixin {
   AnimationController _controller;
   Animation<double> _animation;
+  Text text;
 
   @override
   void initState() {
     super.initState();
+
+    text = widget.text;
+
     _controller = AnimationController(vsync: this, duration: widget.duration);
     _animation = CurveTween(curve: Curves.easeInOut).animate(_controller)
       ..addListener(
         () => setState(() => <String, void>{}),
       );
     _controller.repeat();
+
+    EzBlocProvider.of<EzGlobalBloc>(context)
+        .get<EzLoadingBloc>(EzLoadingBloc)
+        .messageStream
+        .listen((msg) {
+      if (msg != null) {
+        setState(() {
+          text = Text(
+            msg,
+            style: text.style,
+          );
+        });
+      }
+    });
   }
 
   @override

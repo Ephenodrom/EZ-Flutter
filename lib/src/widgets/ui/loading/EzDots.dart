@@ -64,13 +64,16 @@ class _EzDotsState extends State<EzDots> with SingleTickerProviderStateMixin {
 
     controller.repeat();
 
-     EzBlocProvider.of<EzGlobalBloc>(context)
+    EzBlocProvider.of<EzGlobalBloc>(context)
         .get<EzLoadingBloc>(EzLoadingBloc)
         .messageStream
         .listen((msg) {
       if (msg != null) {
         setState(() {
-          text = Text(msg, style: text.style,);
+          text = Text(
+            msg,
+            style: text.style,
+          );
         });
       }
     });
@@ -90,8 +93,8 @@ class _EzDotsState extends State<EzDots> with SingleTickerProviderStateMixin {
     List<Widget> children = [];
     children.add(getDots());
     if (widget.text != null) {
-      children.add(Padding(
-          padding: EdgeInsets.symmetric(vertical: 8), child: text));
+      children.add(
+          Padding(padding: EdgeInsets.symmetric(vertical: 8), child: text));
     }
     return children;
   }

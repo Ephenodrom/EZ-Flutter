@@ -1,3 +1,4 @@
+import 'package:ez_flutter/src/bloc/ez_flutter_bloc.dart';
 import 'package:flutter/material.dart';
 
 ///
@@ -14,6 +15,28 @@ class EzSpinner extends StatefulWidget {
 
 class _EzSpinnerState extends State<EzSpinner>
     with SingleTickerProviderStateMixin {
+  Text text;
+
+  @override
+  void initState() {
+    super.initState();
+    text = widget.text;
+
+    EzBlocProvider.of<EzGlobalBloc>(context)
+        .get<EzLoadingBloc>(EzLoadingBloc)
+        .messageStream
+        .listen((msg) {
+      if (msg != null) {
+        setState(() {
+          text = Text(
+            msg,
+            style: text.style,
+          );
+        });
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Center(
