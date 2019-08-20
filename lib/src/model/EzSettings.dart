@@ -10,6 +10,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 /// * Access the EZ Flutter setting via EzSettings.az()
 /// * Access your environment settings via EzSettings.env()
 /// * Access your application settings via EzSettings.app()
+/// * Access your shared preference settings via EzSettings.sp()
+/// * Access your external settings via EzSettings.ex()
 ///
 class EzSettings {
   static const String TAG = "EzSettings";
@@ -17,6 +19,7 @@ class EzSettings {
   static const String KEY_ENV_SETTINGS = "env_settings";
   static const String KEY_APP_SETTINGS = "app_settings";
   static const String KEY_SP_SETTINGS = "shared_preferences";
+  static const String KEY_EXTERNAL_SETTINGS = "external_settings";
   static const String KEY_EZ_SHARED_PREFERENCES = "ez_shared_preferences";
   static const String PATH_EZ_SETTINGS = "assets/ez_settings.json";
 
@@ -58,7 +61,12 @@ class EzSettings {
     return value;
   }
 
-  static init({String envPath, String applicationPath}) async {
+  static init(
+      {String envPath,
+      String applicationPath,
+      String externalUrl,
+      Map<String, String> queryParameters,
+      Map<String, String> headers}) async {
     try {
       Logger(TAG).info("Try to load configuration from $PATH_EZ_SETTINGS");
       await GlobalConfiguration()
@@ -76,6 +84,17 @@ class EzSettings {
       await GlobalConfiguration()
           .loadFromPathIntoKey(applicationPath, KEY_APP_SETTINGS);
     }
+    if (externalUrl != null) {
+      Logger(TAG).info("Try to load configuration from external $externalUrl");
+      try {
+        await GlobalConfiguration().loadFromUrlIntoKey(
+            applicationPath, KEY_EXTERNAL_SETTINGS,
+            queryParameters: queryParameters, headers: headers);
+      } catch (e) {
+        Logger(TAG).info(
+            "Could not load configuration from $applicationPath because of $e");
+      }
+    }
     try {
       Logger(TAG).info("Try to load configuration from shared preferences");
       final SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -87,7 +106,6 @@ class EzSettings {
     } catch (e) {
       Logger(TAG).info(
           "Could not load configuration from shared preferences because of $e");
-      throw e;
     }
   }
 }

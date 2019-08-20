@@ -9,6 +9,7 @@ import 'bloc/EzBlocBase.dart';
 import 'bloc/EzBlocProvider.dart';
 import 'bloc/EzGlobalBloc.dart';
 import 'bloc/blocs/EzMessageBloc.dart';
+import 'bloc/blocs/EzLoadingBloc.dart';
 import 'model/EzTranslator.dart';
 
 ///
@@ -22,6 +23,9 @@ import 'model/EzTranslator.dart';
 /// [locales] are the supported languages. The default is 'EN'.
 /// [envPath] is the path for the environment configuration.
 /// [applicationPath] is the path for your application configuration.
+/// [externalUrl] is the url for external configuration.
+/// [queryParameters] are the queryParameters to use while fetching the external configuration.
+/// [headers] are the headers to use while fetching the external configuration.
 /// [materialThemeData] the material theme data to add to the [MaterialApp]
 /// [cupertinoThemeData] the material theme data to add to the [CupertinoApp]
 ///
@@ -44,7 +48,10 @@ class EzRunner {
       String envPath,
       String applicationPath,
       ThemeData materialThemeData,
-      CupertinoThemeData cupertinoThemeData}) async {
+      CupertinoThemeData cupertinoThemeData,
+      String externalUrl,
+      Map<String, String> queryParameters,
+      Map<String, String> headers}) async {
     Logger.root.level = Level.ALL;
     Logger.root.onRecord.listen((record) {
       print('${record.level.name}: ${record.time}: ${record.message}');
@@ -59,7 +66,13 @@ class EzRunner {
       blocs = {};
     }
     blocs.putIfAbsent(EzMessageBloc, () => EzMessageBloc());
-    await EzSettings.init(envPath: envPath, applicationPath: applicationPath);
+    blocs.putIfAbsent(EzLoadingBloc, () => EzLoadingBloc());
+    await EzSettings.init(
+        envPath: envPath,
+        applicationPath: applicationPath,
+        externalUrl: externalUrl,
+        queryParameters: queryParameters,
+        headers: headers);
     return runApp(buildBlocWrapper(wrapper, blocs));
   }
 }
