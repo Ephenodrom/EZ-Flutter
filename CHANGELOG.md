@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.2.6] - 2019-08-20
+
+* Text at EzSpinner, EzDots, EzPulse widgets updateable
+* Added new ui widgets
+* Added loading external configuration
+
 ## [0.2.5] - 2019-08-14
 
 * Export HttpUtils

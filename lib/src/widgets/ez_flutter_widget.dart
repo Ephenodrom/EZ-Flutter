@@ -9,3 +9,4 @@ export 'ui/EzGradientScaffold.dart';
 export 'ui/EzScaffold.dart';
 export 'ui/EzDivider.dart';
 export 'ui/EzGradientAppBar.dart';
+export 'ui/EzSandwichDivider.dart';
