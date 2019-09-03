@@ -1,5 +1,10 @@
 # Changelog
 
+## [0.2.7] - 2019-09-02
+
+* Add EzThemeData models
+* Add EzThemeUtils
+
 ## [0.2.6] - 2019-08-20
 
 * Text at EzSpinner, EzDots, EzPulse widgets updateable

@@ -23,11 +23,11 @@ EZ Flutter is a collection of widgets, packages and many more usefull things, mi
 
 ### pubspec.yaml
 
-Update **pubspec.yaml** and add the following line to your dependencies. Replace **$version** with the latest version of this package.
+Update **pubspec.yaml** and add the following line to your dependencies.
 
 ```yaml
 dependencies:
-  ez_flutter: $version
+  ez_flutter: ^0.2.7
 ```
 
 Update your **pubspec.yaml** file and add the following assets locations :
