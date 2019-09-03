@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.2.8] - 2019-09-02
+
+* Update EzThemeData models
+
 ## [0.2.7] - 2019-09-02
 
 * Add EzThemeData models

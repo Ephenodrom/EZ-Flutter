@@ -9,6 +9,11 @@ import 'EzColor.dart';
 import 'EzEdgeInsets.dart';
 import 'EzIconThemeData.dart';
 
+import 'package:json_annotation/json_annotation.dart';
+
+part 'EzThemeData.g.dart';
+
+@JsonSerializable(includeIfNull: false)
 class EzThemeData {
   EzColor primaryColor;
   EzColor scaffoldBackgroundColor;
@@ -62,7 +67,7 @@ class EzThemeData {
       color: EzColor.fromColor(themeData.cardTheme.color),
       elevation: themeData.cardTheme.elevation,
       margin: EzEdgeInsets.fromEdgeInsets(themeData.cardTheme.margin),
-      shape: themeData.cardTheme.shape,
+      //shape: themeData.cardTheme.shape,
     );
     this.appBarTheme = EzAppBarThemeData(
       actionsIconTheme: EzIconThemeData.fromIconThemeData(
@@ -75,4 +80,15 @@ class EzThemeData {
       //textTheme: themeData.appBarTheme.textTheme,
     );
   }
+
+  /*
+   * Json to EzThemeData object
+   */
+  factory EzThemeData.fromJson(Map<String, dynamic> json) =>
+      _$EzThemeDataFromJson(json);
+
+  /*
+   * EzThemeData object to json
+   */
+  Map<String, dynamic> toJson() => _$EzThemeDataToJson(this);
 }
