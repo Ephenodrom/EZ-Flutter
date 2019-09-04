@@ -27,7 +27,7 @@ class EzSandwichDivider extends StatelessWidget {
   /// The amount of empty space to the right of the top line.
   final double tPRight;
 
-    /// The amount of empty space to the left of the bottom line.
+  /// The amount of empty space to the left of the bottom line.
   final double bPLeft;
 
   /// The amount of empty space to the right of the bottom line.
@@ -61,7 +61,9 @@ class EzSandwichDivider extends StatelessWidget {
     );
 
     if (text != null) {
-      list.add(Center(child: text,));
+      list.add(Center(
+        child: text,
+      ));
     }
 
     list.add(
@@ -78,8 +80,6 @@ class EzSandwichDivider extends StatelessWidget {
 
     return list;
   }
-
-
 
   double getBoxHeight(BuildContext context) {
     if (text.style != null) {

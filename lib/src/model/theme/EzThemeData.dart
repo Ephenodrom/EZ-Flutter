@@ -33,8 +33,8 @@ class EzThemeData {
       primaryColor: primaryColor.toColor() ?? Colors.blue,
       scaffoldBackgroundColor:
           scaffoldBackgroundColor.toColor() ?? Colors.grey[50],
-      cardTheme:
-          cardThemeData.toCardTheme() ?? EzThemeUtils.getDefaultLightCardTheme(),
+      cardTheme: cardThemeData.toCardTheme() ??
+          EzThemeUtils.getDefaultLightCardTheme(),
       buttonColor: buttonThemeData.buttonColor.toColor() ??
           Color(ColorUtils.hexToInt("#E0E0E0")),
       focusColor: buttonThemeData.focusColor.toColor() ??

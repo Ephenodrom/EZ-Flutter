@@ -3,7 +3,6 @@ import 'package:json_annotation/json_annotation.dart';
 import 'EzColor.dart';
 import 'EzEdgeInsets.dart';
 
-
 part 'EzCardThemeData.g.dart';
 
 @JsonSerializable()
@@ -14,8 +13,7 @@ class EzCardThemeData {
   EzEdgeInsets margin;
   //ShapeBorder shape;
 
-  EzCardThemeData(
-      {this.clipBehavior, this.color, this.elevation, this.margin});
+  EzCardThemeData({this.clipBehavior, this.color, this.elevation, this.margin});
 
   CardTheme toCardTheme() {
     return CardTheme(
@@ -27,7 +25,7 @@ class EzCardThemeData {
     );
   }
 
-    factory EzCardThemeData.fromJson(Map<String, dynamic> json) =>
+  factory EzCardThemeData.fromJson(Map<String, dynamic> json) =>
       _$EzCardThemeDataFromJson(json);
 
   Map<String, dynamic> toJson() => _$EzCardThemeDataToJson(this);
