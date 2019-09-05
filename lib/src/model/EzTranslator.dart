@@ -25,7 +25,7 @@ class EzTranslator {
   }
 
   static Future<EzTranslator> load(Locale locale) async {
-    EzTranslator translations = new EzTranslator(locale);
+    EzTranslator translations = EzTranslator(locale);
     try {
       Logger(TAG).info(
           "Try to load translation from locale/locale_${locale.languageCode}.json");

@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.3.0] - 2019-09-05
+
+* Minor fixes
+
 ## [0.2.9] - 2019-09-04
 
 * Minor fixes

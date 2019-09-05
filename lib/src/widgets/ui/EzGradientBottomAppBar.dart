@@ -47,7 +47,7 @@ class EzGradientBottomAppBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return new Container(
+    return Container(
       decoration: BoxDecoration(gradient: gradient),
       child: BottomAppBar(
         child: child,

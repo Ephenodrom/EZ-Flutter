@@ -109,7 +109,7 @@ class _EzDotsState extends State<EzDots> with SingleTickerProviderStateMixin {
         ),
         Opacity(
           opacity: ani2.value,
-          child: new Padding(
+          child: Padding(
             padding: EdgeInsets.symmetric(horizontal: 8),
             child: Dot(radius: 10.0, color: widget.color, isDot: widget.isDot),
           ),
@@ -139,8 +139,8 @@ class Dot extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return new Center(
-      child: new Transform.rotate(
+    return Center(
+      child: Transform.rotate(
         angle: 0,
         child: Container(
           width: radius,

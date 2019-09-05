@@ -12,12 +12,13 @@ class EzThemeUtils {
         splashColor: Color(ColorUtils.hexToInt("#999999")),
         disabledColor: Color(ColorUtils.hexToInt("#9E9E9E")),
         scaffoldBackgroundColor: Colors.grey[50],
-        dividerTheme: getDefaultLightDividerThemeData(),
+        //dividerTheme: getDefaultLightDividerThemeData(),
         cardTheme: getDefaultLightCardTheme(),
         buttonTheme: getDefaultLightButtonThemeData(),
         appBarTheme: getDefaultLightAppBarTheme());
   }
 
+/*
   static DividerThemeData getDefaultLightDividerThemeData() {
     return DividerThemeData(
         color: const Color(0x1F000000),
@@ -26,6 +27,7 @@ class EzThemeUtils {
         space: 0,
         thickness: 1);
   }
+*/
 
   static AppBarTheme getDefaultLightAppBarTheme() {
     return AppBarTheme(

@@ -87,7 +87,7 @@ class EzGradientScaffold extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return new Container(
+    return Container(
       decoration: BoxDecoration(gradient: gradient),
       child: Scaffold(
           body: EzGlobalMessageWrapper(body),
