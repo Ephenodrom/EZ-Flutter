@@ -1,4 +1,4 @@
-# ![EZ Flutter](/img/ez_logo_pink.png "EZ Flutter") EZ Flutter (Alpha)
+# ![EZ Flutter](/img/ez_logo64.png "EZ Flutter") EZ Flutter (Alpha)
 
 EZ Flutter is a collection of widgets, packages and many more usefull things, mixed up in a little framework. The aim is to make standard features easily available from scratch.
 
