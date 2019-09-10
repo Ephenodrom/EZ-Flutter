@@ -1,5 +1,9 @@
+import 'dart:convert';
+
 import 'package:basic_utils/basic_utils.dart';
+import 'package:ez_flutter/src/model/theme/EzThemeData.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class EzThemeUtils {
   static ThemeData getDefaultLightTheme() {
@@ -64,5 +68,15 @@ class EzThemeUtils {
         borderRadius: BorderRadius.all(Radius.circular(4.0)),
       ),
     );
+  }
+
+  ///
+  /// Load the a [ThemeData] from from a json file from the given [themePath].
+  ///
+  static Future<ThemeData> loadThemeFromPath(String themePath) async {
+    String content = await rootBundle.loadString(themePath);
+    Map<String, dynamic> themeAsMap = json.decode(content);
+    EzThemeData data = EzThemeData.fromJson(themeAsMap);
+    return data.toThemeData();
   }
 }
