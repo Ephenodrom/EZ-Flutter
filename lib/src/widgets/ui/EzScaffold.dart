@@ -17,6 +17,7 @@ class EzScaffold extends StatelessWidget {
       this.floatingActionButtonLocation,
       this.floatingActionButtonAnimator,
       this.persistentFooterButtons,
+      this.backgroundColor,
       this.drawer,
       this.endDrawer,
       this.bottomNavigationBar,
@@ -76,11 +77,14 @@ class EzScaffold extends StatelessWidget {
   /// See [Scaffold.drawerDragStartBehavior]
   final DragStartBehavior drawerDragStartBehavior;
 
+  /// See [Scaffold.backgroundColor]
+  final Color backgroundColor;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         body: EzGlobalMessageWrapper(body),
-        backgroundColor: Colors.transparent,
+        backgroundColor: backgroundColor,
         extendBody: extendBody,
         appBar: appBar,
         drawerDragStartBehavior: drawerDragStartBehavior,
