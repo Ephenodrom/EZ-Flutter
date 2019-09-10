@@ -1,13 +1,9 @@
-import 'package:ez_flutter/src/model/theme/EzThemeData.dart';
 import 'package:ez_flutter/src/model/EzSettings.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:logging/logging.dart';
-import 'package:flutter/services.dart' show rootBundle;
-import 'dart:convert';
-
 import '../ez_flutter.dart';
 import 'bloc/EzBlocBase.dart';
 import 'bloc/EzBlocProvider.dart';
@@ -61,12 +57,10 @@ class EzRunner {
     Logger.root.onRecord.listen((record) {
       print('${record.level.name}: ${record.time}: ${record.message}');
     });
+    WidgetsFlutterBinding.ensureInitialized();
 
     if (themePath != null) {
-      String content = await rootBundle.loadString(themePath);
-      Map<String, dynamic> themeAsMap = json.decode(content);
-      EzThemeData data = EzThemeData.fromJson(themeAsMap);
-      materialThemeData = data.toThemeData();
+      materialThemeData = await EzThemeUtils.loadThemeFromPath(themePath);
     }
 
     Widget wrapper;
