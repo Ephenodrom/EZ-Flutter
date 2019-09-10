@@ -13,6 +13,8 @@ EZ Flutter is a collection of widgets, packages and many more usefull things, mi
    * [Multilanguage Support](#multilanguage-support)
    * [Buildin Customizable Transition Screen](#buildin-customizable-transition-screen)
    * [Buildin Bloc Support](#buildin-bloc-support)
+   * [Util Classes](#util-classes)
+   * [Manage Theme Via Json](#manage-theme-via-json)
 4. [Documentation](#documentation)
 5. [Contribution](#contribution)
 6. [Used Packages](#used-packages)
@@ -68,6 +70,14 @@ EZ Flutter provides a customizable loading screen to switch between to screens a
 ### Buildin Bloc Support
 
 EZ Flutter comes with a Blocprovider to easily handle multiple blocs within the app.
+
+### Util Classes
+
+EZ Flutter integrates the [Basic Utils](https://pub.dev/packages/basic_utils) package and provides many useful helper classes to master different situations.
+
+### Manage Theme Via Json
+
+EZ Flutter offers the possibility to manage themes via json files.
 
 ## Documentation
 

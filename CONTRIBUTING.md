@@ -2,11 +2,11 @@
 
 ## Errors
 
-// TODO
+Create an issue.
 
 ## Feature Requests
 
-// TODO
+Create an issue with a good description of the feature.
 
 ## Pull Requests
 
