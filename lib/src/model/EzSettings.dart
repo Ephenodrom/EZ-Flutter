@@ -101,7 +101,7 @@ class EzSettings {
             queryParameters: queryParameters, headers: headers);
       } catch (e) {
         Logger(TAG).info(
-            "Could not load configuration from $applicationPath because of $e");
+            "Could not load configuration from $externalUrl because of $e");
       }
     }
     try {
@@ -110,7 +110,7 @@ class EzSettings {
       String persistent = prefs.getString(KEY_EZ_SHARED_PREFERENCES);
       if (persistent != null) {
         Map<String, dynamic> persistentAsMap = json.decode(persistent);
-        GlobalConfiguration().setValue(KEY_SP_SETTINGS, persistentAsMap);
+        GlobalConfiguration().addValue(KEY_SP_SETTINGS, persistentAsMap);
       }
     } catch (e) {
       Logger(TAG).info(
