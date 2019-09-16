@@ -57,7 +57,7 @@ class EzSettings {
     persistentAsMap[key] = value;
     persistent = json.encode(persistentAsMap);
     await prefs.setString(KEY_EZ_SHARED_PREFERENCES, persistent);
-    GlobalConfiguration().setValue(key, value);
+    GlobalConfiguration().setValue(KEY_SP_SETTINGS, persistent);
     return value;
   }
 
