@@ -53,11 +53,20 @@ class EzSettings {
   static dynamic updateSp(String key, dynamic value) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String persistent = prefs.getString(KEY_EZ_SHARED_PREFERENCES);
-    Map<String, dynamic> persistentAsMap = json.decode(persistent);
+     Map<String, dynamic> persistentAsMap;
+    if(persistent != null){
+       persistentAsMap = json.decode(persistent);
+    }else{
+      persistentAsMap = {};
+    }
     persistentAsMap[key] = value;
     persistent = json.encode(persistentAsMap);
     await prefs.setString(KEY_EZ_SHARED_PREFERENCES, persistent);
-    GlobalConfiguration().setValue(KEY_SP_SETTINGS, persistent);
+    if(GlobalConfiguration().get(KEY_SP_SETTINGS) != null){
+      GlobalConfiguration().updateValue(KEY_SP_SETTINGS, persistent);
+    } else{
+      GlobalConfiguration().addValue(KEY_SP_SETTINGS, persistent);
+    }
     return value;
   }
 
