@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.3.6] - 2019-10-21
+
+* Updated to newest BasicUtils version
+
 ## [0.3.5] - 2019-09-17
 
 * Minor fixes
