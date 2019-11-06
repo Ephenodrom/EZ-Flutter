@@ -18,6 +18,7 @@ import 'model/EzTranslator.dart';
 /// It calls the runApp method with a [MaterialApp] or [CupertinoApp] adding a [EzTranslationsDelegate]
 /// and the [locales] as supported locales.
 ///
+/// [title] is the title of the app.
 /// [blocs] are custom BLOCs that can be added to the [EzGlobalBloc] to be accessable within the app.
 /// [cupertino] defines if the runner should use [CupertinoApp] instead of [MaterialApp].
 /// [locales] are the supported languages. The default is 'EN'.
@@ -34,14 +35,15 @@ import 'model/EzTranslator.dart';
 /// * It will only support EN as a language for translation
 /// * It will run a MaterialApp
 /// * It will use the default values of ThemeData
+/// * It will only add the default blocs from EZ Flutter to the [EzGlobalBloc]
 ///
 /// ```dart
 /// void main() async =>
-///      await EzRunner.run(MyHomePage(title: 'Hello EZ'));
+///      await EzRunner.run(MyHomePage(), "EZ Flutter App");
 /// ```
 ///
 class EzRunner {
-  static Future<void> run(Widget app,
+  static Future<void> run(Widget app, String title,
       {Map<Type, EzBlocBase> blocs,
       bool cupertino = false,
       List<Locale> locales = const [Locale('en')],
@@ -65,9 +67,9 @@ class EzRunner {
 
     Widget wrapper;
     if (cupertino) {
-      wrapper = getCupertinoWrapper(app, locales, cupertinoThemeData);
+      wrapper = getCupertinoWrapper(app, title, locales, cupertinoThemeData);
     } else {
-      wrapper = getMaterialWrapper(app, locales, materialThemeData);
+      wrapper = getMaterialWrapper(app, title, locales, materialThemeData);
     }
     if (blocs == null) {
       blocs = {};
@@ -89,10 +91,10 @@ Widget buildBlocWrapper(Widget wrapper, Map<Type, EzBlocBase> blocs) {
       bloc: EzGlobalBloc(blocs: blocs), child: wrapper);
 }
 
-Widget getMaterialWrapper(
-    Widget app, List<Locale> locales, ThemeData materialThemeData) {
+Widget getMaterialWrapper(Widget app, String title, List<Locale> locales,
+    ThemeData materialThemeData) {
   return MaterialApp(
-      title: 'Flutter Demo',
+      title: title,
       theme: materialThemeData != null
           ? materialThemeData
           : ThemeData(primaryColor: Colors.blue),
@@ -105,10 +107,10 @@ Widget getMaterialWrapper(
       home: app);
 }
 
-Widget getCupertinoWrapper(
-    Widget app, List<Locale> locales, CupertinoThemeData cupertinoThemeData) {
+Widget getCupertinoWrapper(Widget app, String title, List<Locale> locales,
+    CupertinoThemeData cupertinoThemeData) {
   return CupertinoApp(
-      title: 'Flutter Demo',
+      title: title,
       theme: cupertinoThemeData != null
           ? cupertinoThemeData
           : CupertinoThemeData(primaryColor: Colors.blue),

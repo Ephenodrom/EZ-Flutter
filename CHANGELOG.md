@@ -1,5 +1,10 @@
 # Changelog
 
+## [0.3.7] - 2019-11-06
+
+* Improve EzRunner
+* Updated to newest BasicUtils version
+
 ## [0.3.6] - 2019-10-21
 
 * Updated to newest BasicUtils version
