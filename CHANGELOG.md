@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.3.9] - 2019-11-17
+
+* Add parameter displayDebugBadge to EzRunner
+
 ## [0.3.8] - 2019-11-08
 
 * Update pubspec.yaml

@@ -54,7 +54,8 @@ class EzRunner {
       String externalUrl,
       Map<String, String> queryParameters,
       Map<String, String> headers,
-      String themePath}) async {
+      String themePath,
+      bool displayDebugBadge = true}) async {
     Logger.root.level = Level.ALL;
     Logger.root.onRecord.listen((record) {
       print('${record.level.name}: ${record.time}: ${record.message}');
@@ -67,9 +68,11 @@ class EzRunner {
 
     Widget wrapper;
     if (cupertino) {
-      wrapper = getCupertinoWrapper(app, title, locales, cupertinoThemeData);
+      wrapper = getCupertinoWrapper(
+          app, title, locales, cupertinoThemeData, displayDebugBadge);
     } else {
-      wrapper = getMaterialWrapper(app, title, locales, materialThemeData);
+      wrapper = getMaterialWrapper(
+          app, title, locales, materialThemeData, displayDebugBadge);
     }
     if (blocs == null) {
       blocs = {};
@@ -92,7 +95,7 @@ Widget buildBlocWrapper(Widget wrapper, Map<Type, EzBlocBase> blocs) {
 }
 
 Widget getMaterialWrapper(Widget app, String title, List<Locale> locales,
-    ThemeData materialThemeData) {
+    ThemeData materialThemeData, bool displayDebugBadge) {
   return MaterialApp(
       title: title,
       theme: materialThemeData != null
@@ -104,11 +107,12 @@ Widget getMaterialWrapper(Widget app, String title, List<Locale> locales,
         GlobalWidgetsLocalizations.delegate,
       ],
       supportedLocales: locales,
+      debugShowCheckedModeBanner: displayDebugBadge,
       home: app);
 }
 
 Widget getCupertinoWrapper(Widget app, String title, List<Locale> locales,
-    CupertinoThemeData cupertinoThemeData) {
+    CupertinoThemeData cupertinoThemeData, bool displayDebugBadge) {
   return CupertinoApp(
       title: title,
       theme: cupertinoThemeData != null
@@ -118,5 +122,6 @@ Widget getCupertinoWrapper(Widget app, String title, List<Locale> locales,
         EzTranslationsDelegate(locales),
       ],
       supportedLocales: locales,
+      debugShowCheckedModeBanner: displayDebugBadge,
       home: app);
 }
