@@ -20,8 +20,19 @@ class EzTranslator {
   Locale locale;
   static Map<dynamic, dynamic> _localizedValues;
 
-  String text(String key) {
-    return _localizedValues[key] ?? '$key';
+  String text(String key, {Map<String, String> replace}) {
+    String value = _localizedValues[key] as String;
+    if (value == null) {
+      return key;
+    }
+    if (replace != null) {
+      replace.forEach(
+        (String k, String v) {
+          value.replaceAll("\$$k", v);
+        },
+      );
+    }
+    return value;
   }
 
   static Future<EzTranslator> load(Locale locale) async {
