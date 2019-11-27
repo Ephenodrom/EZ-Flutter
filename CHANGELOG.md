@@ -1,5 +1,10 @@
 # Changelog
 
+## [0.4.0] - 2019-11-27
+
+* Improve EzTranslator #17
+* Update dependencies
+
 ## [0.3.9] - 2019-11-17
 
 * Add parameter displayDebugBadge to EzRunner
