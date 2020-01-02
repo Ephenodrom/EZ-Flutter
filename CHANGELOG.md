@@ -1,5 +1,10 @@
 # Changelog
 
+## [0.4.1] - 2020-01-02
+
+* Improve routing EZ Runner #18
+* Update dependencies
+
 ## [0.4.0] - 2019-11-27
 
 * Improve EzTranslator #17

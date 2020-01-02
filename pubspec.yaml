@@ -1,6 +1,6 @@
 name: ez_flutter
 description: A collection of widgets, packages and many more usefull things, mixed up in little framework.
-version: 0.4.0
+version: 0.4.1
 author: Daniel Linsenmeier <daniel@ephenodrom.de>
 homepage: https://github.com/Ephenodrom/EZ-Flutter
 publish_to: https://pub.dartlang.org
@@ -14,11 +14,11 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   logging: ^0.11.3+2
-  basic_utils: ^2.3.7
+  basic_utils: ^2.4.3
   global_configuration: ^1.4.0
-  rxdart: ^0.22.6
+  rxdart: ^0.23.1
   shared_preferences: ^0.5.3+4
-  json_annotation: ">=2.0.0 <=3.0.0"
+  json_annotation: ">=2.0.0 <=3.0.1"
 
 
 dev_dependencies:

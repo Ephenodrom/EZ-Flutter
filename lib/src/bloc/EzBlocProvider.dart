@@ -16,12 +16,10 @@ class EzBlocProvider<T extends EzBlocBase> extends StatefulWidget {
   _EzBlocProviderState<T> createState() => _EzBlocProviderState<T>();
 
   static T of<T extends EzBlocBase>(BuildContext context) {
-    final type = _typeOf<EzBlocProvider<T>>();
-    EzBlocProvider<T> provider = context.ancestorWidgetOfExactType(type);
+    EzBlocProvider<T> provider =
+        context.findAncestorWidgetOfExactType<EzBlocProvider<T>>();
     return provider.bloc;
   }
-
-  static Type _typeOf<T>() => T;
 }
 
 class _EzBlocProviderState<T> extends State<EzBlocProvider<EzBlocBase>> {
