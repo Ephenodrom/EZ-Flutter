@@ -56,6 +56,8 @@ class EzRunner {
       String envPath,
       String applicationPath,
       ThemeData materialThemeData,
+      Iterable<LocalizationsDelegate<dynamic>> localizationsDelegates,
+      Locale Function(Locale, Iterable<Locale>) localeResolutionCallback,
       CupertinoThemeData cupertinoThemeData,
       String externalUrl,
       Map<String, String> queryParameters,
@@ -75,10 +77,10 @@ class EzRunner {
     Widget wrapper;
     if (cupertino) {
       wrapper = getCupertinoWrapper(
-          app, title, locales, cupertinoThemeData, displayDebugBadge, initialRoute: initialRoute, routes: routes, locale: locale);
+          app, title, locales, cupertinoThemeData, displayDebugBadge, initialRoute: initialRoute, routes: routes, locale: locale, localizationsDelegates: localizationsDelegates, localeResolutionCallback: localeResolutionCallback);
     } else {
       wrapper = getMaterialWrapper(
-          app, title, locales, materialThemeData, displayDebugBadge, initialRoute: initialRoute, routes: routes, locale: locale);
+          app, title, locales, materialThemeData, displayDebugBadge, initialRoute: initialRoute, routes: routes, locale: locale, localizationsDelegates: localizationsDelegates, localeResolutionCallback: localeResolutionCallback);
     }
     if (blocs == null) {
       blocs = {};
@@ -102,7 +104,8 @@ Widget buildBlocWrapper(Widget wrapper, Map<Type, EzBlocBase> blocs) {
 
 Widget getMaterialWrapper(Widget app, String title, List<Locale> locales,
     ThemeData materialThemeData, bool displayDebugBadge, {String initialRoute,
-      Map<String, WidgetBuilder> routes, Locale locale}) {
+      Map<String, WidgetBuilder> routes, Locale locale, Iterable<LocalizationsDelegate<dynamic>> localizationsDelegates,
+      Locale Function(Locale, Iterable<Locale>) localeResolutionCallback,}) {
   return MaterialApp(
       initialRoute: initialRoute,
       routes: routes,
@@ -111,11 +114,8 @@ Widget getMaterialWrapper(Widget app, String title, List<Locale> locales,
       theme: materialThemeData != null
           ? materialThemeData
           : ThemeData(primaryColor: Colors.blue),
-      localizationsDelegates: [
-        EzTranslationsDelegate(locales),
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-      ],
+      localizationsDelegates: localizationsDelegates,
+      localeResolutionCallback: localeResolutionCallback,
       supportedLocales: locales,
       debugShowCheckedModeBanner: displayDebugBadge,
       home: app);
@@ -123,7 +123,8 @@ Widget getMaterialWrapper(Widget app, String title, List<Locale> locales,
 
 Widget getCupertinoWrapper(Widget app, String title, List<Locale> locales,
     CupertinoThemeData cupertinoThemeData, bool displayDebugBadge, {String initialRoute,
-      Map<String, WidgetBuilder> routes, Locale locale,}) {
+      Map<String, WidgetBuilder> routes, Locale locale, Iterable<LocalizationsDelegate<dynamic>> localizationsDelegates,
+      Locale Function(Locale, Iterable<Locale>) localeResolutionCallback,}) {
   return CupertinoApp(
       initialRoute: initialRoute,
       routes: routes,    
@@ -132,9 +133,8 @@ Widget getCupertinoWrapper(Widget app, String title, List<Locale> locales,
       theme: cupertinoThemeData != null
           ? cupertinoThemeData
           : CupertinoThemeData(primaryColor: Colors.blue),
-      localizationsDelegates: [
-        EzTranslationsDelegate(locales),
-      ],
+      localizationsDelegates: localizationsDelegates,
+      localeResolutionCallback: localeResolutionCallback,
       supportedLocales: locales,
       debugShowCheckedModeBanner: displayDebugBadge,
       home: app);
