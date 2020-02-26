@@ -23,7 +23,7 @@ import 'model/EzTranslator.dart';
 /// [cupertino] defines if the runner should use [CupertinoApp] instead of [MaterialApp].
 /// [locales] are the supported languages. The default is 'EN'.
 /// [initialRoute] initial application route.
-/// [routes] The application's top-level routing table. 
+/// [routes] The application's top-level routing table.
 /// [locale] The appilcation locale.
 /// [envPath] is the path for the environment configuration.
 /// [applicationPath] is the path for your application configuration.
@@ -75,10 +75,12 @@ class EzRunner {
     Widget wrapper;
     if (cupertino) {
       wrapper = getCupertinoWrapper(
-          app, title, locales, cupertinoThemeData, displayDebugBadge, initialRoute: initialRoute, routes: routes, locale: locale);
+          app, title, locales, cupertinoThemeData, displayDebugBadge,
+          initialRoute: initialRoute, routes: routes, locale: locale);
     } else {
       wrapper = getMaterialWrapper(
-          app, title, locales, materialThemeData, displayDebugBadge, initialRoute: initialRoute, routes: routes, locale: locale);
+          app, title, locales, materialThemeData, displayDebugBadge,
+          initialRoute: initialRoute, routes: routes, locale: locale);
     }
     if (blocs == null) {
       blocs = {};
@@ -101,8 +103,8 @@ Widget buildBlocWrapper(Widget wrapper, Map<Type, EzBlocBase> blocs) {
 }
 
 Widget getMaterialWrapper(Widget app, String title, List<Locale> locales,
-    ThemeData materialThemeData, bool displayDebugBadge, {String initialRoute,
-      Map<String, WidgetBuilder> routes, Locale locale}) {
+    ThemeData materialThemeData, bool displayDebugBadge,
+    {String initialRoute, Map<String, WidgetBuilder> routes, Locale locale}) {
   return MaterialApp(
       initialRoute: initialRoute,
       routes: routes,
@@ -121,12 +123,19 @@ Widget getMaterialWrapper(Widget app, String title, List<Locale> locales,
       home: app);
 }
 
-Widget getCupertinoWrapper(Widget app, String title, List<Locale> locales,
-    CupertinoThemeData cupertinoThemeData, bool displayDebugBadge, {String initialRoute,
-      Map<String, WidgetBuilder> routes, Locale locale,}) {
+Widget getCupertinoWrapper(
+  Widget app,
+  String title,
+  List<Locale> locales,
+  CupertinoThemeData cupertinoThemeData,
+  bool displayDebugBadge, {
+  String initialRoute,
+  Map<String, WidgetBuilder> routes,
+  Locale locale,
+}) {
   return CupertinoApp(
       initialRoute: initialRoute,
-      routes: routes,    
+      routes: routes,
       locale: locale,
       title: title,
       theme: cupertinoThemeData != null

@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.4.2] - 2020-02-26
+
+* Update dependencies
+
 ## [0.4.1] - 2020-01-02
 
 * Improve routing EZ Runner #18
