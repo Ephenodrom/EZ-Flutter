@@ -7,4 +7,5 @@ class EzSettingsKeys {
   static const String KEY_MSG_WARNING_COLOR = "msg_warning_color";
   static const String KEY_MSG_ERROR_COLOR = "msg_error_color";
   static const String KEY_MSG_DEBUG_COLOR = "msg_debug_color";
+  static const String KEY_EZ_CURRENT_THEME = "ez_current_theme";
 }

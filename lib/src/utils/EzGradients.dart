@@ -498,7 +498,7 @@ class EzGradients {
   static Gradient hydrogen = LinearGradient(
       begin: Alignment.topCenter,
       end: Alignment.bottomCenter,
-      colors: const [Color(0xff667db6), Color(0xff0082c8)]);
+      colors: [Color(0xff667db6), Color(0xff0082c8)]);
 
   ///
   /// Zinc taken from https://uigradients.com/#Zinc

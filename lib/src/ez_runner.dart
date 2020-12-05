@@ -1,8 +1,9 @@
 import 'package:ez_flutter/src/model/EzSettings.dart';
+import 'package:ez_flutter/src/widgets/EzFlutterCupertinoApp.dart';
+import 'package:ez_flutter/src/widgets/EzFlutterMaterialApp.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:logging/logging.dart';
 import '../ez_flutter.dart';
 import 'bloc/EzBlocBase.dart';
@@ -61,12 +62,21 @@ class EzRunner {
       Map<String, String> queryParameters,
       Map<String, String> headers,
       String themePath,
-      bool displayDebugBadge = true}) async {
+      bool displayDebugBadge = true,
+      List<ThemeData> materialThemes,
+      List<CupertinoThemeData> cupertinoThemes}) async {
     Logger.root.level = Level.ALL;
     Logger.root.onRecord.listen((record) {
       print('${record.level.name}: ${record.time}: ${record.message}');
     });
     WidgetsFlutterBinding.ensureInitialized();
+
+    await EzSettings.init(
+        envPath: envPath,
+        applicationPath: applicationPath,
+        externalUrl: externalUrl,
+        queryParameters: queryParameters,
+        headers: headers);
 
     if (themePath != null) {
       materialThemeData = await EzThemeUtils.loadThemeFromPath(themePath);
@@ -80,19 +90,17 @@ class EzRunner {
     } else {
       wrapper = getMaterialWrapper(
           app, title, locales, materialThemeData, displayDebugBadge,
-          initialRoute: initialRoute, routes: routes, locale: locale);
+          initialRoute: initialRoute,
+          routes: routes,
+          locale: locale,
+          materialThemes: materialThemes);
     }
     if (blocs == null) {
       blocs = {};
     }
     blocs.putIfAbsent(EzMessageBloc, () => EzMessageBloc());
     blocs.putIfAbsent(EzLoadingBloc, () => EzLoadingBloc());
-    await EzSettings.init(
-        envPath: envPath,
-        applicationPath: applicationPath,
-        externalUrl: externalUrl,
-        queryParameters: queryParameters,
-        headers: headers);
+
     return runApp(buildBlocWrapper(wrapper, blocs));
   }
 }
@@ -104,47 +112,40 @@ Widget buildBlocWrapper(Widget wrapper, Map<Type, EzBlocBase> blocs) {
 
 Widget getMaterialWrapper(Widget app, String title, List<Locale> locales,
     ThemeData materialThemeData, bool displayDebugBadge,
-    {String initialRoute, Map<String, WidgetBuilder> routes, Locale locale}) {
-  return MaterialApp(
-      initialRoute: initialRoute,
-      routes: routes,
-      locale: locale,
-      title: title,
-      theme: materialThemeData != null
-          ? materialThemeData
-          : ThemeData(primaryColor: Colors.blue),
-      localizationsDelegates: [
-        EzTranslationsDelegate(locales),
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-      ],
-      supportedLocales: locales,
-      debugShowCheckedModeBanner: displayDebugBadge,
-      home: app);
+    {String initialRoute,
+    Map<String, WidgetBuilder> routes,
+    Locale locale,
+    List<ThemeData> materialThemes}) {
+  List<ThemeData> themes;
+  if (materialThemes == null) {
+    themes = [materialThemeData];
+  } else {
+    themes = materialThemes;
+  }
+  return EzFlutterMaterialApp(
+    app,
+    title,
+    locales,
+    themes,
+    displayDebugBadge,
+    initialRoute: initialRoute,
+    routes: routes,
+    locale: locale,
+  );
 }
 
-Widget getCupertinoWrapper(
-  Widget app,
-  String title,
-  List<Locale> locales,
-  CupertinoThemeData cupertinoThemeData,
-  bool displayDebugBadge, {
-  String initialRoute,
-  Map<String, WidgetBuilder> routes,
-  Locale locale,
-}) {
-  return CupertinoApp(
-      initialRoute: initialRoute,
-      routes: routes,
-      locale: locale,
-      title: title,
-      theme: cupertinoThemeData != null
-          ? cupertinoThemeData
-          : CupertinoThemeData(primaryColor: Colors.blue),
-      localizationsDelegates: [
-        EzTranslationsDelegate(locales),
-      ],
-      supportedLocales: locales,
-      debugShowCheckedModeBanner: displayDebugBadge,
-      home: app);
+Widget getCupertinoWrapper(Widget app, String title, List<Locale> locales,
+    CupertinoThemeData cupertinoThemeData, bool displayDebugBadge,
+    {String initialRoute,
+    Map<String, WidgetBuilder> routes,
+    Locale locale,
+    List<CupertinoThemeData> cupertinoThemes}) {
+  List<CupertinoThemeData> themes;
+  if (cupertinoThemes == null) {
+    themes = [cupertinoThemeData];
+  } else {
+    themes = cupertinoThemes;
+  }
+  return EzFlutterCupertinoApp(app, title, locales, themes, displayDebugBadge,
+      initialRoute: initialRoute, routes: routes, locale: locale);
 }

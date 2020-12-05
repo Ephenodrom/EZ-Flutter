@@ -38,7 +38,8 @@ class EzThemeUtils {
         brightness: Brightness.light,
         color: Colors.blue,
         elevation: 4,
-        textTheme: Typography(platform: TargetPlatform.android).black,
+        textTheme:
+            Typography.material2018(platform: TargetPlatform.android).black,
         actionsIconTheme: const IconThemeData(color: Colors.black),
         iconTheme: const IconThemeData(color: Colors.black));
   }

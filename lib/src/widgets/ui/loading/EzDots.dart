@@ -35,7 +35,7 @@ class _EzDotsState extends State<EzDots> with SingleTickerProviderStateMixin {
 
     text = widget.text;
 
-    controller = AnimationController(duration: widget.duration, vsync: this);
+    controller = AnimationController(duration: widget.duration);
 
     ani1 = Tween(begin: 0.0, end: 1.0).animate(
       CurvedAnimation(

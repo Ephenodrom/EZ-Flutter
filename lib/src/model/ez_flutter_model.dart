@@ -12,3 +12,4 @@ export 'theme/EzColor.dart';
 export 'theme/EzEdgeInsets.dart';
 export 'theme/EzIconThemeData.dart';
 export 'theme/EzThemeData.dart';
+export 'EzDynamicTheme.dart';

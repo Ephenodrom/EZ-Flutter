@@ -1,3 +1,4 @@
+import 'package:ez_flutter/ez_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show rootBundle;
 import 'dart:convert';
@@ -47,6 +48,7 @@ class EzTranslator {
       Logger(TAG).info(
           "Could not load translation from locale/locale_${locale.languageCode}.json!");
     }
+    await EzSettings.updateSp("CURRENT_LOCALE", locale.languageCode);
     return translations;
   }
 

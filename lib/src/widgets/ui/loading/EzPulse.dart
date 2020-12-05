@@ -34,7 +34,7 @@ class _EzPulseState extends State<EzPulse> with SingleTickerProviderStateMixin {
 
     text = widget.text;
 
-    _controller = AnimationController(vsync: this, duration: widget.duration);
+    _controller = AnimationController(duration: widget.duration);
     _animation = CurveTween(curve: Curves.easeInOut).animate(_controller)
       ..addListener(
         () => setState(() => <String, void>{}),

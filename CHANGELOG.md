@@ -1,5 +1,14 @@
 # Changelog
 
+## [0.4.4] - 2020-04-01
+
+* Fix pub health suggestions
+
+## [0.4.3] - 2020-04-01
+
+* Save current locale in shared preferences with key "CURRENT_LOCALE"
+* Update dependencies
+
 ## [0.4.2] - 2020-02-26
 
 * Update dependencies

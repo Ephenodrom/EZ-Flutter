@@ -85,7 +85,7 @@ class EzSandwichDivider extends StatelessWidget {
     if (text.style != null) {
       return 32 + text.style.fontSize;
     } else {
-      double height = Theme.of(context).textTheme.body1.fontSize;
+      double height = Theme.of(context).textTheme.bodyText2.fontSize;
       return 32 + height;
     }
   }

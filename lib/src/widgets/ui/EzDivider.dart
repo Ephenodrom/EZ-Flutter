@@ -82,7 +82,7 @@ class EzDivider extends StatelessWidget {
     if (text.style != null) {
       return text.style.fontSize / 2;
     } else {
-      double height = Theme.of(context).textTheme.body1.fontSize;
+      double height = Theme.of(context).textTheme.bodyText2.fontSize;
       return height / 2;
     }
   }
@@ -91,7 +91,7 @@ class EzDivider extends StatelessWidget {
     if (text.style != null) {
       return text.style.fontSize;
     } else {
-      double height = Theme.of(context).textTheme.body1.fontSize;
+      double height = Theme.of(context).textTheme.bodyText2.fontSize;
       return height;
     }
   }
