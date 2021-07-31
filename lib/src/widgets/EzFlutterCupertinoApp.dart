@@ -10,21 +10,26 @@ class EzFlutterCupertinoApp extends StatefulWidget {
   List<Locale> locales;
   List<CupertinoThemeData> cupertinoThemes;
   bool displayDebugBadge;
-  String initialRoute;
-  Map<String, WidgetBuilder> routes;
-  Locale locale;
+  String? initialRoute;
+  Map<String, WidgetBuilder>? routes;
+  Locale? locale;
 
-  EzFlutterCupertinoApp(this.app, this.title, this.locales,
-      this.cupertinoThemes, this.displayDebugBadge,
-      {this.initialRoute, this.routes, this.locale});
+  EzFlutterCupertinoApp(
+    this.app,
+    this.title,
+    this.locales,
+    this.cupertinoThemes,
+    this.displayDebugBadge, {
+    this.initialRoute,
+    this.routes,
+    this.locale,
+  });
 
   @override
   _EzFlutterCupertinoAppState createState() => _EzFlutterCupertinoAppState();
 }
 
 class _EzFlutterCupertinoAppState extends State<EzFlutterCupertinoApp> {
-  ThemeData currentTheme;
-
   @override
   void initState() {
     EzDynamicTheme().cupertinoThemes = widget.cupertinoThemes;
@@ -37,16 +42,17 @@ class _EzFlutterCupertinoAppState extends State<EzFlutterCupertinoApp> {
   @override
   Widget build(BuildContext context) {
     return CupertinoApp(
-        initialRoute: widget.initialRoute,
-        routes: widget.routes,
-        locale: widget.locale,
-        title: widget.title,
-        theme: EzDynamicTheme().currentCupertinoTheme(),
-        localizationsDelegates: [
-          EzTranslationsDelegate(widget.locales),
-        ],
-        supportedLocales: widget.locales,
-        debugShowCheckedModeBanner: widget.displayDebugBadge,
-        home: widget.app);
+      initialRoute: widget.initialRoute,
+      routes: widget.routes ?? <String, Widget Function(BuildContext)>{},
+      locale: widget.locale,
+      title: widget.title,
+      theme: EzDynamicTheme().currentCupertinoTheme(),
+      localizationsDelegates: [
+        EzTranslationsDelegate(widget.locales),
+      ],
+      supportedLocales: widget.locales,
+      debugShowCheckedModeBanner: widget.displayDebugBadge,
+      home: widget.app,
+    );
   }
 }

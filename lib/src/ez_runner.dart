@@ -6,11 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:logging/logging.dart';
 import '../ez_flutter.dart';
-import 'bloc/EzBlocBase.dart';
-import 'bloc/EzBlocProvider.dart';
-import 'bloc/EzGlobalBloc.dart';
-import 'bloc/blocs/EzMessageBloc.dart';
-import 'bloc/blocs/EzLoadingBloc.dart';
 import 'model/EzTranslator.dart';
 
 ///
@@ -47,24 +42,25 @@ import 'model/EzTranslator.dart';
 /// ```
 ///
 class EzRunner {
-  static Future<void> run(Widget app, String title,
-      {Map<Type, EzBlocBase> blocs,
-      String initialRoute,
-      Map<String, WidgetBuilder> routes = const <String, WidgetBuilder>{},
-      Locale locale,
-      bool cupertino = false,
-      List<Locale> locales = const [Locale('en')],
-      String envPath,
-      String applicationPath,
-      ThemeData materialThemeData,
-      CupertinoThemeData cupertinoThemeData,
-      String externalUrl,
-      Map<String, String> queryParameters,
-      Map<String, String> headers,
-      String themePath,
-      bool displayDebugBadge = true,
-      List<ThemeData> materialThemes,
-      List<CupertinoThemeData> cupertinoThemes}) async {
+  static Future<void> run(
+    Widget app,
+    String title, {
+    String? initialRoute,
+    Map<String, WidgetBuilder> routes = const <String, WidgetBuilder>{},
+    Locale locale = const Locale('en'),
+    bool cupertino = false,
+    List<Locale> locales = const [Locale('en')],
+    String? envPath,
+    String? applicationPath,
+    ThemeData? materialThemeData,
+    CupertinoThemeData? cupertinoThemeData,
+    String? externalUrl,
+    Map<String, String>? queryParameters,
+    Map<String, String>? headers,
+    bool displayDebugBadge = true,
+    List<ThemeData>? materialThemes,
+    List<CupertinoThemeData>? cupertinoThemes,
+  }) async {
     Logger.root.level = Level.ALL;
     Logger.root.onRecord.listen((record) {
       print('${record.level.name}: ${record.time}: ${record.message}');
@@ -78,47 +74,48 @@ class EzRunner {
         queryParameters: queryParameters,
         headers: headers);
 
-    if (themePath != null) {
-      materialThemeData = await EzThemeUtils.loadThemeFromPath(themePath);
-    }
-
     Widget wrapper;
     if (cupertino) {
       wrapper = getCupertinoWrapper(
-          app, title, locales, cupertinoThemeData, displayDebugBadge,
-          initialRoute: initialRoute, routes: routes, locale: locale);
+        app,
+        title,
+        locales,
+        displayDebugBadge,
+        initialRoute: initialRoute,
+        routes: routes,
+        locale: locale,
+        cupertinoThemeData: cupertinoThemeData,
+      );
     } else {
       wrapper = getMaterialWrapper(
-          app, title, locales, materialThemeData, displayDebugBadge,
-          initialRoute: initialRoute,
-          routes: routes,
-          locale: locale,
-          materialThemes: materialThemes);
+        app,
+        title,
+        locales,
+        displayDebugBadge,
+        initialRoute: initialRoute,
+        routes: routes,
+        locale: locale,
+        materialThemes: materialThemes,
+        materialThemeData: materialThemeData,
+      );
     }
-    if (blocs == null) {
-      blocs = {};
-    }
-    blocs.putIfAbsent(EzMessageBloc, () => EzMessageBloc());
-    blocs.putIfAbsent(EzLoadingBloc, () => EzLoadingBloc());
 
-    return runApp(buildBlocWrapper(wrapper, blocs));
+    return runApp(wrapper);
   }
 }
 
-Widget buildBlocWrapper(Widget wrapper, Map<Type, EzBlocBase> blocs) {
-  return EzBlocProvider<EzGlobalBloc>(
-      bloc: EzGlobalBloc(blocs: blocs), child: wrapper);
-}
-
-Widget getMaterialWrapper(Widget app, String title, List<Locale> locales,
-    ThemeData materialThemeData, bool displayDebugBadge,
-    {String initialRoute,
-    Map<String, WidgetBuilder> routes,
-    Locale locale,
-    List<ThemeData> materialThemes}) {
+Widget getMaterialWrapper(
+    Widget app, String title, List<Locale> locales, bool displayDebugBadge,
+    {String? initialRoute,
+    Map<String, WidgetBuilder>? routes,
+    Locale? locale,
+    List<ThemeData>? materialThemes,
+    ThemeData? materialThemeData}) {
   List<ThemeData> themes;
   if (materialThemes == null) {
-    themes = [materialThemeData];
+    themes = [
+      materialThemeData ?? ThemeData(),
+    ];
   } else {
     themes = materialThemes;
   }
@@ -134,18 +131,27 @@ Widget getMaterialWrapper(Widget app, String title, List<Locale> locales,
   );
 }
 
-Widget getCupertinoWrapper(Widget app, String title, List<Locale> locales,
-    CupertinoThemeData cupertinoThemeData, bool displayDebugBadge,
-    {String initialRoute,
-    Map<String, WidgetBuilder> routes,
-    Locale locale,
-    List<CupertinoThemeData> cupertinoThemes}) {
+Widget getCupertinoWrapper(
+    Widget app, String title, List<Locale> locales, bool displayDebugBadge,
+    {String? initialRoute,
+    CupertinoThemeData? cupertinoThemeData,
+    Map<String, WidgetBuilder>? routes,
+    Locale? locale,
+    List<CupertinoThemeData>? cupertinoThemes}) {
   List<CupertinoThemeData> themes;
   if (cupertinoThemes == null) {
-    themes = [cupertinoThemeData];
+    themes = [cupertinoThemeData ?? CupertinoThemeData()];
   } else {
     themes = cupertinoThemes;
   }
-  return EzFlutterCupertinoApp(app, title, locales, themes, displayDebugBadge,
-      initialRoute: initialRoute, routes: routes, locale: locale);
+  return EzFlutterCupertinoApp(
+    app,
+    title,
+    locales,
+    themes,
+    displayDebugBadge,
+    initialRoute: initialRoute,
+    routes: routes,
+    locale: locale ?? Locale('en'),
+  );
 }

@@ -14,14 +14,14 @@ import 'package:shared_preferences/shared_preferences.dart';
 /// * Access your external settings via EzSettings.ex()
 ///
 class EzSettings {
-  static const String TAG = "EzSettings";
-  static const String KEY_EZ_SETTINGS = "ez_settings";
-  static const String KEY_ENV_SETTINGS = "env_settings";
-  static const String KEY_APP_SETTINGS = "app_settings";
-  static const String KEY_SP_SETTINGS = "shared_preferences";
-  static const String KEY_EXTERNAL_SETTINGS = "external_settings";
-  static const String KEY_EZ_SHARED_PREFERENCES = "ez_shared_preferences";
-  static const String PATH_EZ_SETTINGS = "assets/ez_settings.json";
+  static const String TAG = 'EzSettings';
+  static const String KEY_EZ_SETTINGS = 'ez_settings';
+  static const String KEY_ENV_SETTINGS = 'env_settings';
+  static const String KEY_APP_SETTINGS = 'app_settings';
+  static const String KEY_SP_SETTINGS = 'shared_preferences';
+  static const String KEY_EXTERNAL_SETTINGS = 'external_settings';
+  static const String KEY_EZ_SHARED_PREFERENCES = 'ez_shared_preferences';
+  static const String PATH_EZ_SETTINGS = 'assets/ez_settings.json';
 
   ///
   /// Return the EZ Flutter settings
@@ -51,8 +51,8 @@ class EzSettings {
   /// Update a value in the shared preferences settings
   ///
   static dynamic updateSp(String key, dynamic value) async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    String persistent = prefs.getString(KEY_EZ_SHARED_PREFERENCES);
+    var prefs = await SharedPreferences.getInstance();
+    var persistent = prefs.getString(KEY_EZ_SHARED_PREFERENCES);
     Map<String, dynamic> persistentAsMap;
     if (persistent != null) {
       persistentAsMap = json.decode(persistent);
@@ -70,51 +70,51 @@ class EzSettings {
     return value;
   }
 
-  static init(
-      {String envPath,
-      String applicationPath,
-      String externalUrl,
-      Map<String, String> queryParameters,
-      Map<String, String> headers}) async {
+  static Future<void> init(
+      {String? envPath,
+      String? applicationPath,
+      String? externalUrl,
+      Map<String, String>? queryParameters,
+      Map<String, String>? headers}) async {
     try {
-      Logger(TAG).info("Try to load configuration from $PATH_EZ_SETTINGS");
+      Logger(TAG).info('Try to load configuration from $PATH_EZ_SETTINGS');
       await GlobalConfiguration()
           .loadFromPathIntoKey(PATH_EZ_SETTINGS, KEY_EZ_SETTINGS);
     } catch (e) {
-      Logger(TAG).info("Could not load configuration from $PATH_EZ_SETTINGS");
+      Logger(TAG).info('Could not load configuration from $PATH_EZ_SETTINGS');
     }
     if (envPath != null) {
-      Logger(TAG).info("Try to load configuration from $envPath");
+      Logger(TAG).info('Try to load configuration from $envPath');
       await GlobalConfiguration()
           .loadFromPathIntoKey(envPath, KEY_ENV_SETTINGS);
     }
     if (applicationPath != null) {
-      Logger(TAG).info("Try to load configuration from $applicationPath");
+      Logger(TAG).info('Try to load configuration from $applicationPath');
       await GlobalConfiguration()
           .loadFromPathIntoKey(applicationPath, KEY_APP_SETTINGS);
     }
     if (externalUrl != null) {
-      Logger(TAG).info("Try to load configuration from external $externalUrl");
+      Logger(TAG).info('Try to load configuration from external $externalUrl');
       try {
         await GlobalConfiguration().loadFromUrlIntoKey(
-            applicationPath, KEY_EXTERNAL_SETTINGS,
+            externalUrl, KEY_EXTERNAL_SETTINGS,
             queryParameters: queryParameters, headers: headers);
       } catch (e) {
         Logger(TAG).info(
-            "Could not load configuration from $externalUrl because of $e");
+            'Could not load configuration from $externalUrl because of $e');
       }
     }
     try {
-      Logger(TAG).info("Try to load configuration from shared preferences");
-      final SharedPreferences prefs = await SharedPreferences.getInstance();
-      String persistent = prefs.getString(KEY_EZ_SHARED_PREFERENCES);
+      Logger(TAG).info('Try to load configuration from shared preferences');
+      final prefs = await SharedPreferences.getInstance();
+      var persistent = prefs.getString(KEY_EZ_SHARED_PREFERENCES);
       if (persistent != null) {
         Map<String, dynamic> persistentAsMap = json.decode(persistent);
         GlobalConfiguration().addValue(KEY_SP_SETTINGS, persistentAsMap);
       }
     } catch (e) {
       Logger(TAG).info(
-          "Could not load configuration from shared preferences because of $e");
+          'Could not load configuration from shared preferences because of $e');
     }
   }
 }

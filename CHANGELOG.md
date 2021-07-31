@@ -1,5 +1,31 @@
 # Changelog
 
+## [0.7.0-nullsafety.1]
+
+* Convert to nullsafety
+
+## [0.6.0] - 2020-03-11
+
+* Update dependencies
+* Removed different parts, to concentrate on core features like, easy setup, translation, configuration sharing and theme switching.
+* Removed dependencies
+
+## [0.5.2] - 2020-01-13
+
+* Added more logging to EzDynamicTheme
+* Improved EzDynamicTheme
+
+## [0.5.1] - 2020-01-13
+
+* Added logging to EzDynamicTheme
+* Improved EzDynamicTheme
+
+## [0.5.0] - 2020-12-07
+
+* Added new EzDynamicTheme class to dynamically switch between different themes
+* Added new parameter to the EzRunner to add multiple themes
+* Fix pub health suggestions
+
 ## [0.4.4] - 2020-04-01
 
 * Fix pub health suggestions

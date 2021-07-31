@@ -1,10 +1,10 @@
 import 'package:ez_flutter/ez_flutter.dart';
 import 'package:flutter/material.dart';
 
-void main() async => await EzRunner.run(MyHomePage(), "Ez Flutter App");
+void main() async => await EzRunner.run(MyHomePage('My App'), 'Ez Flutter App');
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
+  MyHomePage(this.title);
 
   final String title;
 
@@ -15,12 +15,12 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
-    return EzScaffold(
+    return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
       ),
       body: Center(
-        child: Text("Hello EZ Flutter"),
+        child: Text('Hello EZ Flutter'),
       ),
     );
   }
