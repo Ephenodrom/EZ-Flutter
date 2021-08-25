@@ -29,7 +29,7 @@ Update **pubspec.yaml** and add the following line to your dependencies.
 
 ```yaml
 dependencies:
-  ez_flutter: ^0.7.0-nullsafety.1
+  ez_flutter: ^0.7.1
 ```
 
 Update your **pubspec.yaml** file and add the following assets locations :

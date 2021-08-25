@@ -47,7 +47,7 @@ class EzRunner {
     String title, {
     String? initialRoute,
     Map<String, WidgetBuilder> routes = const <String, WidgetBuilder>{},
-    Locale locale = const Locale('en'),
+    Locale? locale,
     bool cupertino = false,
     List<Locale> locales = const [Locale('en')],
     String? envPath,
@@ -152,6 +152,6 @@ Widget getCupertinoWrapper(
     displayDebugBadge,
     initialRoute: initialRoute,
     routes: routes,
-    locale: locale ?? Locale('en'),
+    locale: locale,
   );
 }

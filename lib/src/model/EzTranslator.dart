@@ -22,18 +22,19 @@ class EzTranslator {
   static Map<dynamic, dynamic>? _localizedValues;
 
   String text(String key, {Map<String, String>? replace}) {
-    var value = _localizedValues![key] as String;
-    if (value == null) {
+    if (_localizedValues!.containsKey(key)) {
+      var value = _localizedValues![key] as String;
+      if (replace != null) {
+        replace.forEach(
+          (String k, String v) {
+            value.replaceAll('\$$k', v);
+          },
+        );
+      }
+      return value;
+    } else {
       return key;
     }
-    if (replace != null) {
-      replace.forEach(
-        (String k, String v) {
-          value.replaceAll('\$$k', v);
-        },
-      );
-    }
-    return value;
   }
 
   static Future<EzTranslator> load(Locale locale) async {

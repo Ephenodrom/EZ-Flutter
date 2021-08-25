@@ -1,5 +1,14 @@
 # Changelog
 
+## [0.7.1]
+
+* Fix null error if no localized value is found
+
+## [0.7.0]
+
+* Convert to nullsafety
+* Fixed a bug where EN is forced as language
+
 ## [0.7.0-nullsafety.1]
 
 * Convert to nullsafety
